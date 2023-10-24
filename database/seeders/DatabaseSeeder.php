@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
 //             'email' => 'test@example.com',
 //        ]);
 //    }
+    // EJECUTAR SEEDERS DE LA APLICACION
     public function run()
     {
         $this->call([

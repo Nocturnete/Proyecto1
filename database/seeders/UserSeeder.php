@@ -7,14 +7,15 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
-   public function run()
-   {
-       $admin = new User([
-           'name'      => config('admin.name'),
-           'email'     => config('admin.email'),
-           'password'  => Hash::make(config('admin.password')),
-       ]);
-       $admin->save();
-   }
+    // INSERTAR UN USUARIO ADMINISTRADOR EN LA BASE DE DATOS
+    public function run()
+    {
+        $admin = new User([
+            'name'      => config('admin.name'),
+            'email'     => config('admin.email'),
+            'password'  => Hash::make(config('admin.password')),
+        ]);
+        $admin->save();
+    }
 }
 
