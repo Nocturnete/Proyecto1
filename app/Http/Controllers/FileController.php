@@ -84,8 +84,7 @@ class FileController extends Controller
         if (!$fileExists) {
             return redirect()->route('files.index')->with('error', 'Fitxer no trobat');
         }
-    
-        return view('files.show', compact('file'));
+        return view('files.show', compact('file')); 
     }
 
     /**
