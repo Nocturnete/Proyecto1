@@ -81,7 +81,6 @@ class FileController extends Controller
     public function show(File $file)
     {
         $fileExists = Storage::disk('public')->exists($file->filepath);
-    
         if (!$fileExists) {
             return redirect()->route('files.index')->with('error', 'Fitxer no trobat');
         }
