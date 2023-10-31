@@ -17,7 +17,7 @@
                                 <td scope="col">Filesize</td>
                                 <td scope="col">Created</td>
                                 <td scope="col">Updated</td>
-                                <td scope="col">Ver</td>
+                                <td scope="col">Show</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,7 +28,7 @@
                                 <td>{{ $file->filesize }}</td>
                                 <td>{{ $file->created_at }}</td>
                                 <td>{{ $file->updated_at }}</td>
-                                <td><a href="{{ route('files.show', $file->id) }}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mr-2">Ver</a></td>
+                                <td><a href="{{ route('files.show', $file->id) }}">Show</a></td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -124,7 +124,6 @@ class FileController extends Controller
                 'filepath' => $newFilePath,
             ]);
         }
-    
         return redirect()->route('files.show', $file)->with('success', 'Archivo actualizado con éxito');
     }
 
