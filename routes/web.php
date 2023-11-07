@@ -5,6 +5,7 @@ use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\PostController;
 
 
 /*
@@ -38,6 +39,12 @@ Route::middleware('auth')->group(function () {
 Route::get('mail/test', [MailController::class, 'test']);
 
 Route::resource('files', FileController::class)
-    ->middleware(['auth', 'role.any:1,3']);
+    ->middleware(['auth', 'role.any:2']);
+
+Route::resource('posts', PostController::class)
+    ->middleware(['auth', 'role.any:1']);
+
+Route::get('search', 'App\Http\Controllers\PostController@search')->name('search');
+
 
 require __DIR__.'/auth.php';
