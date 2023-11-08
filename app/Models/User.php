@@ -43,4 +43,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    
+    public function places()
+    {
+        return $this->hasMany(Place::class, 'author_id');    
+    }
+
 }
