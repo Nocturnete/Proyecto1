@@ -25,8 +25,6 @@ class EnsureUserHasRole
            return redirect('dashboard')
                ->with('error', "Access denied to {$url}");
        }
-
-
        return $next($request);
    }
 }
