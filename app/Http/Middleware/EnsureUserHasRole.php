@@ -18,13 +18,13 @@ class EnsureUserHasRole
     * @param  int  $role
     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
     */
-    public function handle(Request $request, Closure $next, $role)
-    {
-        if ($request->user()->role_id != $role) {
-            $url = $request->url();
-            return redirect('dashboard')
-                ->with('error', "Access denied to {$url}");
-        }
-        return $next($request);
-    }
- }
+   public function handle(Request $request, Closure $next, $role)
+   {
+       if ($request->user()->role_id != $role) {
+           $url = $request->url();
+           return redirect('dashboard')
+               ->with('error', "Access denied to {$url}");
+       }
+       return $next($request);
+   }
+}

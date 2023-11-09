@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\PostController;
 
 
 /*
@@ -45,5 +46,11 @@ Route::resource('places', PlaceController::class)
     ->middleware(['auth', 'role:1']);
 
 Route::get('search', 'App\Http\Controllers\PlaceController@search')->name('search');
+
+Route::resource('posts', PostController::class)
+    ->middleware(['auth', 'role.any:1']);
+
+Route::get('search', 'App\Http\Controllers\PostController@search')->name('search');
+
 
 require __DIR__.'/auth.php';
