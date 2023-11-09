@@ -132,7 +132,7 @@ class PlaceController extends Controller
                 'filepath' => $newFilePath,
             ]);
         }
-        $places->update([
+        $place->update([
             'title' => $request->title,
             'coordenadas' => $request->coordenadas,
             'descripcion' => $request->descripcion,
@@ -155,7 +155,7 @@ class PlaceController extends Controller
     public function search(Request $request)
     {
         $searchTerm = $request->input('search');
-        $places = Place::where('title', 'like', '%', $searchTerm . '%')->paginate(5);
+        $places = Place::where('title', 'like', '%'. $searchTerm . '%')->paginate(5);
         return view('places.index', ['places' => $places]);
     }
 }

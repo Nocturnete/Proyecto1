@@ -28,15 +28,15 @@
                         </div>
                         <div class="mb-4">
                             <label for="coordenadas" class="block text-gray-700 font-bold">Coordenadas:</label>
-                            <input type="text" name="coordenadas" class="w-full p-2 border rounded-md" id="coordenadas">
+                            <input type="text" name="coordenadas" value="{{ $place->coordenadas }}" class="w-full p-2 border rounded-md" id="coordenadas">
                         </div>
                         <div class="mb-4">
                             <label for="descripcion">Descripcion:</label>
-                            <textarea name="descripcion" id="descripcion" class="w-full p-2 border rounded-md" rows="4">{{ $place->description }}</textarea>
+                            <textarea name="descripcion" id="descripcion" class="w-full p-2 border rounded-md" rows="4">{{ $place->descripcion }}</textarea>
                         </div>
                         <div class="mb-4">
                             <label for="imagen" class="block text-gray-700 font-bold">Imagen actual:</label>
-                            <img src="{{ asset('storage/' . $place->file->filepath) }}" alt="Image" class="w-22 mb-4">
+                            <img src="{{ asset('storage/' . $place->file->filepath) }}" alt="Image" class="w-20 mb-4">
                         </div>
                         <div class="mb-4">
                             <label for="upload" class="block text-gray-700 text-sm font-bold mb-2">Selecciona un nuevo archivo:</label>

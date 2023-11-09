@@ -45,12 +45,12 @@ Route::resource('files', FileController::class)
 Route::resource('places', PlaceController::class)
     ->middleware(['auth', 'role:1']);
 
-Route::get('search', 'App\Http\Controllers\PlaceController@search')->name('search');
+Route::get('places.search', 'App\Http\Controllers\PlaceController@search')->name('places.search');
 
 Route::resource('posts', PostController::class)
     ->middleware(['auth', 'role.any:1']);
 
-Route::get('search', 'App\Http\Controllers\PostController@search')->name('search');
+Route::get('posts.search', 'App\Http\Controllers\PostController@search')->name('posts.search');
 
 
 require __DIR__.'/auth.php';

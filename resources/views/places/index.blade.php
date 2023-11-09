@@ -8,7 +8,7 @@
    <div class="py-12">
     <div class="max-w-2xl mx-auto sm:px-6 lg:px-8 h-full">
         <a href="{{ route('places.create') }}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md mb-4 inline-block">Añadir imagen</a>
-        <form action="{{ route('search') }}" method="GET">
+        <form action="{{ route('places.search') }}" method="GET">
             <div class="mb-4">
                 <label for="search" class="block text-gray-700 font-bold">Buscar</label>
                 <input type="text" id="search" name="search" class="w-full p-2 border rounded-md">
