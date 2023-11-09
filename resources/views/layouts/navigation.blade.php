@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('files.index')" :active="request()->routeIs('files.*')">
                         {{ __('Files') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('places.index')" :active="request()->routeIs('places.*')">
+                        {{ __('Places') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -75,6 +78,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('files.index')" :active="request()->routeIs('files.*')">
                 {{ __('Files') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('places.index')" :active="request()->routeIs('places.*')">
+                {{ __('Places') }}
             </x-responsive-nav-link>
         </div>
 
