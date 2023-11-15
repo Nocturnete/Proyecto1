@@ -52,5 +52,8 @@ Route::resource('posts', PostController::class)
 
 Route::get('posts.search', 'App\Http\Controllers\PostController@search')->name('posts.search');
 
+Route::post('/posts/{post}/likes', 'App\Http\Controllers\PostController@like')->name('posts.likes');
+Route::delete('/posts/{post}/likes', 'App\Http\Controllers\PostController@unlike')->name('posts.unlike');
+
 
 require __DIR__.'/auth.php';
