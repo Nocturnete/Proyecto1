@@ -49,4 +49,3 @@ Before you begin, ensure that you have [Composer](https://getcomposer.org/) inst
 php artisan serve
 npm run dev
 
-starting b0.2
