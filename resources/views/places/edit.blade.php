@@ -27,8 +27,12 @@
                             <input type="text" name="title" value="{{ $place->title }}" class="w-full p-2 border rounded-md" id="title">
                         </div>
                         <div class="mb-4">
-                            <label for="coordenadas" class="block text-gray-700 font-bold">Coordenadas:</label>
-                            <input type="text" name="coordenadas" value="{{ $place->coordenadas }}" class="w-full p-2 border rounded-md" id="coordenadas">
+                            <label for="latitude" class="block text-gray-700 font-bold">Latitut:</label>
+                            <input type="text" name="latitude" value="{{ $place->latitude }}" class="w-full p-2 border rounded-md" id="latitude">
+                        </div>
+                        <div class="mb-4">
+                            <label for="longitude" class="block text-gray-700 font-bold">Longitud:</label>
+                            <input type="text" name="longitude" value="{{ $place->longitude }}" class="w-full p-2 border rounded-md" id="longitude">
                         </div>
                         <div class="mb-4">
                             <label for="descripcion">Descripcion:</label>
@@ -36,7 +40,7 @@
                         </div>
                         <div class="mb-4">
                             <label for="imagen" class="block text-gray-700 font-bold">Imagen actual:</label>
-                            <img src="{{ asset('storage/' . $place->file->filepath) }}" alt="Image" class="w-20 mb-4">
+                            <img src="{{ asset('storage/' . $place->file->filepath) }}" alt="Image" class="w-200 mb-4">
                         </div>
                         <div class="mb-4">
                             <label for="upload" class="block text-gray-700 text-sm font-bold mb-2">Selecciona un nuevo archivo:</label>

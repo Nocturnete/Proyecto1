@@ -17,8 +17,12 @@
                             <input type="text" name="title" id="title" class="w-full p-2 border rounded-md">
                         </div>
                         <div class="mb-4">
-                            <label for="coordenadas" class="block text-gray-700 font-bold">Coordenadas:</label>
-                            <input type="text" name="coordenadas" id="coordenadas" class="w-full p-2 border rounded-md">
+                            <label for="latitude" class="block text-gray-700 font-bold">Latitud:</label>
+                            <input type="text" name="latitude" id="latitude" class="w-full p-2 border rounded-md">
+                        </div>
+                        <div class="mb-4">
+                            <label for="longitude" class="block text-gray-700 font-bold">Longitud:</label>
+                            <input type="text" name="longitude" id="longitude" class="w-full p-2 border rounded-md">
                         </div>
                         <div class="mb-4">
                             <label for="descripcion" class="block text-gray-700 font-bold">Descripcion:</label>
@@ -31,7 +35,7 @@
                         <div class="flex space-x-4">
                             <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600">Crear</button>
                             <button type="reset" class="bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-md hover:bg-gray-400">Limpiar</button>
-                            <a href="{{ route('places.index') }}">Volver</a>
+                            <button type="reset" class="bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-md hover:bg-gray-400"> <a href="{{ route('places.index') }}">Volver</a></button>
                         </div>
                     </form>
                 </div>

@@ -37,12 +37,17 @@ class PlaceController extends Controller
         // Validar fitxer
         $validatedData = $request->validate([
             'title' => 'required|max:25',
-            'coordenadas' => 'required|max:160',
+            'latitude'    => 'required',
+            'longitude'   => 'required',
             'descripcion' => 'required|max:250',
             'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024',
         ]);
         
-        // Obtenir dades del fitxer
+        // Obtenir dades      
+        $title        = $request->get('title');        
+        $latitude    = $request->get('latitude');
+        $longitude   = $request->get('longitude');
+        $description = $request->get('descripcion');
         $upload = $request->file('upload');
         $fileName = $upload->getClientOriginalName();
         $fileSize = $upload->getSize();
@@ -66,10 +71,12 @@ class PlaceController extends Controller
             ]);
             \Log::debug("DB storage OK");
             $place = Place::create([
-                'title' => $request->title,
-                'coordenadas' => $request->coordenadas,
+                'title'       => $request->title,
+                'latitude'    => $latitude,
+                'longitude'   => $longitude,
                 'descripcion' => $request->descripcion,
-                'file_id' => $file->id,
+                'file_id'     => $file->id,
+                'author_id'   => auth()->user()->id,
             ]);
             return redirect()->route('places.show', $place)
                 ->with('success', 'File successfully saved');
@@ -85,15 +92,11 @@ class PlaceController extends Controller
      */
     public function show(Place $place)
     {
-        $fileExists = Storage::disk('public')->exists($place->file->filepath);
-    
-        if (!$fileExists) {
-            return redirect()->route('places.index')->with('error', 'Fitxer no trobat');
-        }
-        if (!$place->id) {
-            return redirect()->route('places.index')->with('error', 'Fitxer no trobat');
-        }
-        return view('places.show', compact('place'));
+        return view("places.show", [
+            'place'  => $place,
+            'file'   => $place->file,
+            'author' => $place->user,
+        ]);
     }
 
     /**
@@ -101,7 +104,11 @@ class PlaceController extends Controller
      */
     public function edit(Place $place)
     {
-        return view('places.edit', compact('place'));
+        return view("places.edit", [
+            'place'  => $place,
+            'file'   => $place->file,
+            'author' => $place->user,
+        ]);
     }
 
     /**
@@ -112,7 +119,8 @@ class PlaceController extends Controller
         // Validar fitxer
         $request->validate([
             'title' => 'required|max:25',
-            'coordenadas' => 'required|max:160',
+            'latitude'    => 'required',
+            'longitude'   => 'required',
             'descripcion' => 'required|max:250',
             'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024',
         ]);

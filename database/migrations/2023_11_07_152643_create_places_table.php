@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('places', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->integer('coordenadas');
-            $table->string('descripcion'); 
+            $table->string('title',255);
+            $table->float('latitude', 8, 5);
+            $table->float('longitude', 8, 5);
+            $table->string('descripcion',255); 
             $table->integer('file_id');
+            $table->integer('author_id');
             $table->timestamps();
         });
     }
