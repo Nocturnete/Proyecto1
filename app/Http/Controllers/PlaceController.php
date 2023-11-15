@@ -8,6 +8,7 @@ use App\Models\File;
 use App\Models\User;
 use App\Http\Controllers\FileController;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Favorite;
 
 class PlaceController extends Controller
 {
@@ -18,7 +19,10 @@ class PlaceController extends Controller
     {
         return view("places.index", [
             "places" => Place::paginate(5),
+            // "files" => File::all(),
+            // "users" => User::all(),
         ]);
+
     }
 
     /**
@@ -165,5 +169,29 @@ class PlaceController extends Controller
         $searchTerm = $request->input('search');
         $places = Place::where('title', 'like', '%'. $searchTerm . '%')->paginate(5);
         return view('places.index', ['places' => $places]);
+    }
+
+    public function favorite(Place $place)
+    {
+        $user = auth()->user();
+    
+        if (!$user->favorites->contains($place->id)) {
+            $user->favorites()->attach($place);
+            return redirect()->route('places.index');
+        }
+    
+        return redirect()->route('places.index');
+    }
+    
+    public function unfavorite(Place $place)
+    {
+        $user = auth()->user();
+    
+        if ($user->favorites->contains($place->id)) {
+            $user->favorites()->detach($place);
+            return redirect()->route('places.index');
+        }
+    
+        return redirect()->route('places.index');
     }
 }

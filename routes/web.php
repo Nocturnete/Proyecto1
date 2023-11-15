@@ -52,5 +52,8 @@ Route::resource('posts', PostController::class)
 
 Route::get('posts.search', 'App\Http\Controllers\PostController@search')->name('posts.search');
 
+Route::post('/places/{place}/favorites', 'App\Http\Controllers\PlaceController@favorite')->name('places.favorites');
+Route::delete('/places/{place}/favorites', 'App\Http\Controllers\PlaceController@unfavorite')->name('places.unfavorites');
+
 
 require __DIR__.'/auth.php';

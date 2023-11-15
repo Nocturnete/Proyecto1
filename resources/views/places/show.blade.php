@@ -12,6 +12,7 @@
     <div class="bg-white p-8 rounded shadow-md">
         <h1 class="text-2xl font-semibold mb-4">Detalles del Lugar</h1>
         <p class="text-lg font-semibold mb-2">Titulo: {{ $place->title }}</p>
+        <p>Favoritos: {{ $place->favorited()->count() }}</p>
         <p class="text-gray-600 mb-4">Latitut: {{ $place->latitude }}</p>
         <p class="text-gray-600 mb-4">Longitud: {{ $place->longitude }}</p>
         <p class="text-gray-600 mb-4">Descripción: {{ $place->descripcion }}</p>

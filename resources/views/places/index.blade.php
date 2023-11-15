@@ -12,8 +12,8 @@
             <div class="mb-4">
                 <label for="search" class="block text-gray-700 font-bold">Buscar</label>
                 <input type="text" id="search" name="search" class="w-full p-2 border rounded-md">
+                <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600">Buscar</button>
             </div>
-            <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600">Buscar</button>
         </form>
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg h-full">
             <div class="p-6 bg-white border-b border-gray-200 h-full">
@@ -28,10 +28,24 @@
                         <img src="{{ asset('storage/' . $place->file->filepath) }}" alt="Imagen" class="mt-4 w-full rounded-lg shadow-md">
                     </a>
                 </div>
+                @if(auth()->check() && auth()->user()->favorites->contains($place->id))
+                    <form action="{{ route('places.unfavorites', ['place' => $place->id]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Unfavorite</button>
+                    </form>
+                @else
+                    <form action="{{ route('places.favorites', ['place' => $place->id]) }}" method="POST">
+                        @csrf
+                        <button type="submit">Favorite</button>
+                    </form>
+                @endif
+                <p>{{ $place->favorited()->count() }}</p>
                 @endforeach
             </div>
             {{ $places->links() }}
         </div>
+
     </div>
     </div>
 </x-app-layout>
