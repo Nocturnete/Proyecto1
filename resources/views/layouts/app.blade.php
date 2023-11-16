@@ -6,7 +6,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-
+        <!-- ICONOS TEMPORALES / DESCARGAR PACK -->
+        <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 
         <!-- Styles and scripts -->
         @env(['local','development'])
@@ -38,6 +39,7 @@
             <main>
             <div class="w-full">
                 @include('partials.flash')
+                
                 @yield('content')
             </div>
                 {{ $slot }}
