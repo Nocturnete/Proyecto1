@@ -8,6 +8,7 @@ use App\Models\File;
 use App\Models\User;
 use App\Http\Controllers\FileController;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Like;
 
 class PostController extends Controller
 {
@@ -160,4 +161,29 @@ class PostController extends Controller
         $posts = Post::where('title', 'like', '%' . $searchTerm . '%')->paginate(5);
         return view('posts.index', ['posts' => $posts]);
     }
+
+    public function like(Post $post)
+    {
+        $user = auth()->user();
+    
+        if (!$user->likes->contains($post->id)) {
+            $user->likes()->attach($post);
+            return redirect()->route('posts.index')->with('success', 'Like guardado');
+        }
+    
+        return redirect()->route('posts.index')->with('error', 'Ya has dado like a esta publicación');
+    }
+    
+    public function unlike(Post $post)
+    {
+        $user = auth()->user();
+    
+        if ($user->likes->contains($post->id)) {
+            $user->likes()->detach($post);
+            return redirect()->route('posts.index')->with('success', 'Like eliminado');
+        }
+    
+        return redirect()->route('posts.index')->with('error', 'No has dado like a esta publicación previamente');
+    }
+    
 }

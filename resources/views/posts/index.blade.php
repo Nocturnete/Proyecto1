@@ -28,6 +28,23 @@
                         <img src="{{ asset('storage/' . $post->file->filepath) }}" alt="Imagen" class="mt-4 w-full rounded-lg shadow-md">
                     </a>
                 </div>
+
+                @if(auth()->check() && auth()->user()->likes->contains($post->id))
+                <form action="{{ route('posts.unlike', ['post' => $post->id]) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Dislike</button>
+                </form>
+                @else
+                    <form action="{{ route('posts.likes', ['post' => $post->id]) }}" method="post">
+                        @csrf
+                        <button type="submit">Like</button>
+                    </form>
+                @endif
+                <p>{{ $post->liked()->count() }}</p>
+
+
+
                 @endforeach
             </div>
             {{ $posts->links() }}
