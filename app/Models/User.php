@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Filament\Models\Contracts\FilamentUser;
+use App\Models\Role;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -69,4 +70,8 @@ class User extends Authenticatable implements FilamentUser
         return in_array($this->role_id, ['2', '3']);    
     }
 
+    public function role(): bool
+    {
+        return $this->belongsTo(Role::class);    
+    }
 }

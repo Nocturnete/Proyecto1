@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Place;
-use Illuminate\Http\Request;
 use App\Models\File;
 use App\Models\User;
-use App\Http\Controllers\FileController;
-use Illuminate\Support\Facades\Storage;
 use App\Models\Favorite;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\FileController;
 
 class PlaceController extends Controller
 {
@@ -40,14 +41,14 @@ class PlaceController extends Controller
     {
         // Validar fitxer
         $validatedData = $request->validate([
-            'title' => 'required|max:25',
+            'title'       => 'required',
             'latitude'    => 'required',
             'longitude'   => 'required',
-            'descripcion' => 'required|max:250',
-            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024',
+            'descripcion' => 'required',
+            'upload'      => 'required|mimes:gif,jpeg,jpg,png|max:1024',
         ]);
         
-        // Obtenir dades      
+        // DATOS DEL FORM      
         $title        = $request->get('title');        
         $latitude    = $request->get('latitude');
         $longitude   = $request->get('longitude');

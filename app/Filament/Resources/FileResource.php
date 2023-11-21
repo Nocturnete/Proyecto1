@@ -23,8 +23,14 @@ class FileResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('filepath')
-                    ->required(),
+                Forms\Components\FileUpload::make('filepath')
+                    ->required()
+                    ->image()
+                    ->maxSize(2048)
+                    ->directory('uploads')
+                        ->getUploadedFileNameForStorageUsing(function (\Livewire\TemporaryUploadedFile $file): string {
+                            return time() . '_' . $file->getClientOriginalName();
+                    }),
             ]);
     }
 
@@ -43,6 +49,7 @@ class FileResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])

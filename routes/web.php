@@ -58,4 +58,5 @@ Route::delete('/places/{place}/favorites', 'App\Http\Controllers\PlaceController
 Route::post('/posts/{post}/likes', 'App\Http\Controllers\PostController@like')->name('posts.likes');
 Route::delete('/posts/{post}/likes', 'App\Http\Controllers\PostController@unlike')->name('posts.unlike');
 
+
 require __DIR__.'/auth.php';
