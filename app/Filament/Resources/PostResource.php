@@ -50,7 +50,7 @@ class PostResource extends Resource
                         // Camps recurs Post / Place...
                         Forms\Components\RichEditor::make('title') 
                             ->required(),
-                            Forms\Components\RichEditor::make('description') 
+                        Forms\Components\RichEditor::make('description') 
                             ->required(),
                         ]),
             ]);

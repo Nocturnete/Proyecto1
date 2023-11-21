@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Filament\Resources\PostResource\Pages;
+namespace App\Filament\Resources\PlaceResource\Pages;
 
-use App\Filament\Resources\PostResource;
+use App\Filament\Resources\PlaceResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use App\Models\File;
 
-class CreatePost extends CreateRecord
+class CreatePlace extends CreateRecord
 {
-    protected static string $resource = PostResource::class;
+    protected static string $resource = PlaceResource::class;
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
@@ -29,5 +29,4 @@ class CreatePost extends CreateRecord
 
         return $data;
     }
-
 }

@@ -30,6 +30,7 @@
             <div class="w-full mx-auto h-full p-2 flex justify-center mt-5 overflow-y-hidden">
                 <div class="md:max-w-lg lg:max-w-xl container ">  
                     @foreach ($posts as $post)
+                    <a href="{{ route('posts.show', $post->id) }}">
                         <div class="mb-6 mt-2 p-3 bg-gray-200 rounded-2xl lg:transform lg:transition lg:duration-500 lg:hover:scale-105 lg:hover:shadow-2xl dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <div class="flex p-2 justify-between">
                                 <!-- USUARIO -->
@@ -56,7 +57,7 @@
                             </div>
     
                             <!-- IMAGEN -->
-                            <img class="w-full cursor-pointer rounded-lg" src="{{ asset('storage/' . $post->file->filepath) }}" alt="" />
+                            <img src="{{ asset('storage/' . $post->file->filepath) }}" class="w-full cursor-pointer rounded-lg" />
         
                             <!-- Descripcion -->
                             <div>
@@ -66,7 +67,8 @@
                                 <div>{!! $post->description !!}</div>
 
                             </div>
-                        </div>                
+                        </div>    
+                    </a>            
                     @endforeach
                 </div>
             </div>

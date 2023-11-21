@@ -40,7 +40,8 @@
                             <div class="flex justify-between item-center">
                                 <!-- TITULO -->
                                 <div class="flex items-center">
-                                    <h3 class="font-black text-gray-800 text-2xl md:text-3xl lg:text-3xl dark:text-white">{{ $place->title }}</h3>
+                                    {!! $place->title !!}
+                                    <!-- <h3 class="font-black text-gray-800 text-2xl md:text-3xl lg:text-3xl dark:text-white">{{ $place->title }}</h3> -->
                                 </div>
                                 <!-- FAVORITOS -->
                                 <div class="flex items-center">
@@ -60,7 +61,8 @@
                                 </div>
                             </div>
                             <!-- DESCRIPCION -->
-                            <p class="text-gray-500 text-lg md:text-lg lg:text-xl dark:text-white">{{ $place->descripcion }}</p>
+                            <!-- <p class="text-gray-500 text-lg md:text-lg lg:text-xl dark:text-white">{{ $place->descripcion }}</p> -->
+                            {!! $place->descripcion !!}
                         </div>
                     </div>
                     </a>
