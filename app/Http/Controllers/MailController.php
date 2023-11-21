@@ -15,11 +15,11 @@ class MailController extends Controller
             'name' => 'Anonymous',
             'body' => 'Testing mail',
             'url'  => '/'
-        ]);
-        Mail::to('jmir-laravel@mailinator.com')->send($mail);
-        echo '<h1>Mail send successfully</h1>';
-    } catch (\Exception $e) {
-        echo '<pre>Error - ' . $e .'</pre>';
+            ]);
+            Mail::to('jmir-laravel@mailinator.com')->send($mail);
+            echo '<h1>Mail send successfully</h1>';
+        } catch (\Exception $e) {
+            echo '<pre>Error - ' . $e .'</pre>';
+        }
     }
-}
 }

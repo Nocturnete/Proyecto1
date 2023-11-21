@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
@@ -18,7 +19,6 @@ class FileController extends Controller
         ]);
     }
  
-
     /**
      * Show the form for creating a new resource.
      */
@@ -27,16 +27,17 @@ class FileController extends Controller
         return view("files.create");
     }
  
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+        // VALIDAR FORMATO Y TAMAÑO IMAGEN
         $validatedData = $request->validate([
-            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024'
+            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
         ]);
        
+        // GUARDAR IMAGEN EN LA CARPETA UPLOAD
         $upload = $request->file('upload');
         $fileName = $upload->getClientOriginalName();
         $fileSize = $upload->getSize();
@@ -73,11 +74,9 @@ class FileController extends Controller
      */
     public function show(File $file)
     {
-        $fileExists = Storage::disk('public')->exists($file->filepath);
-        if (!$fileExists) {
-            return redirect()->route('files.index')->with('error', 'Fitxer no trobat');
-        }
-        return view('files.show', compact('file')); 
+        return view("files.show", [
+            'file' => $file
+        ]);
     }
 
     /**
@@ -96,7 +95,7 @@ class FileController extends Controller
     {
         // Validar los datos del formulario
         $request->validate([
-            'upload' => 'mimes:gif,jpeg,jpg,png|max:1024', // Ajusta las reglas según tus necesidades
+            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
         ]);
     
         // Comprueba si se ha enviado un nuevo archivo
@@ -124,12 +123,8 @@ class FileController extends Controller
      */
     public function destroy(File $file)
     {
-        // Eliminar el archivo del disco
         Storage::disk('public')->delete($file->filepath);
-    
-        // Eliminar el registro de la base de datos
         $file->delete();
-    
         return redirect()->route('files.index')->with('success', 'Archivo eliminado con éxito');
     }
 }

@@ -1,9 +1,9 @@
 <x-app-layout>
-   <x-slot name="header">
-       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-           {{ __('Files') }}
-       </h2>
-   </x-slot>
+    <x-slot name="header">
+        <h2 class="font-semibold text-black text-5xl md:text-4xl lg:text-4xl lg:mt-3 dark:text-white">
+            {{ __('Files') }}
+        </h2>
+    </x-slot>
 
    <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

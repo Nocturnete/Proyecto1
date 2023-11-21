@@ -1,118 +1,147 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
-    <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                    </a>
-                </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('files.index')" :active="request()->routeIs('files.*')">
-                        {{ __('Files') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.*')">
-                        {{ __('Posts') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('places.index')" :active="request()->routeIs('places.*')">
-                        {{ __('Places') }}
-                    </x-nav-link>
-                </div>
+<!-- ORDENADOR -->
+<div class="flex antialiased flex-col w-80 text-white hidden lg:flex">
+    <div class="fixed inset-y-0 z-10 flex w-80">
+        <!-- CURVA MENU -->
+        <svg class="absolute inset-0 w-full h-full text-customblue" style="filter: drop-shadow(20px 0 10px #00000030)" preserveAspectRatio="none" viewBox="0 0 309 800" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path  d="M268.487 0H0V800H247.32C207.957 725 207.975 492.294 268.487 367.647C329 243 314.906 53.4314 268.487 0Z"/>
+        </svg>
+        <div class="z-10 flex flex-col flex-1">
+            <!-- NOMBRE -->
+            <div class="flex items-center justify-center w-60 pl-8 pt-7">
+                <span class="text-4xl"><a href="{{ route('dashboard') }}">PicPulse</a></span>
             </div>
-
-            <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
-
-                            <div class="ml-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
-
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
-
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
-            </div>
-
-            <!-- Hamburger -->
-            <div class="-mr-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+            <!-- RUTAS -->
+            <nav class="flex flex-col flex-1 w-80 mt-2 p-8  ">
+                <!-- Index -->
+                <a href="{{ route('dashboard') }}" id="dashboard" class="pt-2 pb-2 mr-14 rounded-lg hover:bg-blue-800 ">
+                    <i class="fi-sr-home text-2xl pl-2 pr-2"></i>
+                    <span class="text-xl">Inicio</span>
+                </a>
+                <!-- Archivos -->
+                <a href="{{ route('files.index') }}" id="files" class="pt-2 pb-2 mr-8 p-2 mt-2 rounded-lg hover:bg-blue-800">
+                    <i class="fi-sr-file-image text-2xl pr-2"></i>
+                    <span class="text-xl">Archivos</span>
+                </a>
+                <!-- Publicaciones -->
+                <a href="{{ route('posts.index') }}" id="posts" class="pt-2 pb-2 mr-4 p-2 mt-2 rounded-lg  hover:bg-blue-800">
+                    <i class="fi-sr-images text-2xl pr-2"></i>
+                    <span class="text-xl">Publicaciones</span>
+                </a>
+                <!-- Lugares -->
+                <a href="{{ route('places.index') }}" id="places" class="pt-2 pb-2 mr-8 p-2 mt-2 rounded-lg hover:bg-blue-800">
+                    <i class="fi-sr-map-marker text-2xl pr-2"></i>
+                    <span class="text-xl">Lugares</span>
+                </a>
+                <!-- Cuenta -->
+                <a href="#" id="account" class="pt-2 pb-2 mr-14 p-2 mt-2 rounded-lg hover:bg-blue-800">
+                    <i class="fi-sr-circle-user text-xl pr-2"></i>
+                    <span class="text-xl">Cuenta</span>
+                </a>
+            </nav>
+            <!-- Cuenta -->
+            <!------------>
+            <!--  PHP   -->
+            <!------------>
+            <div class="flex-shrink-0 pl-4 text-xl">
+                <button class="flex items-center p-3 ml-5 mb-8 space-x-2 rounded-lg px-3 py-2 text-customred cursor-pointer hover:bg-red-600 hover:text-white shadow">
+                    <i class="fi-sr-exit mt-1"></i>
+                    <span class="font-bold">Logout</span>
                 </button>
             </div>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <x-dropdown-link :href="route('logout')"
+                        onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                    {{ __('Log Out') }}
+                </x-dropdown-link>
+            </form>
         </div>
     </div>
+</div>
 
-    <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('files.index')" :active="request()->routeIs('files.*')">
-                {{ __('Files') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.*')">
-                {{ __('Posts') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('places.index')" :active="request()->routeIs('places.*')">
-                {{ __('Places') }}
-            </x-responsive-nav-link>
-        </div>
-
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-            </div>
-
-            <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
-
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
-                </form>
-            </div>
+<!-- MOVIL / TABLET -->
+<div class="w-full lg:hidden">
+    <div class="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-customblue rounded-full bottom-4 left-1/2">
+        <div class="grid h-full max-w-lg grid-cols-5 mx-auto">
+            <!-- Index -->
+            <a href="{{ route('dashboard') }}" id="places" class="inline-flex flex-col items-center justify-center px-5 rounded-s-full group hover:bg-blue-800">
+                <i class="text-xl text-white fi-sr-home"></i>
+                <span class="text-xs text-white">Inicio</span>
+            </a>
+            <!-- Archivos -->
+            <a href="{{ route('files.index') }}" id="files" class="inline-flex flex-col items-center justify-center px-5 group hover:bg-blue-800">
+                <i class="fi-sr-file-image text-xl text-white"></i>
+                <span class="text-xs text-white">Archivos</span>
+            </a>
+            <!-- Publicaciones -->
+            <a href="{{ route('posts.index') }}" id="posts" class="inline-flex flex-col items-center justify-center px-5 group hover:bg-blue-800">
+                <i class="fi-sr-images  text-xl text-white"></i>
+                <span class="text-xs text-white">Publicaciones</span>
+            </a>
+            <!-- Lugares -->
+            <a href="{{ route('places.index') }}" id="places" class="inline-flex flex-col items-center justify-center px-5 group hover:bg-blue-800">
+                <i class="fi-sr-map-marker text-xl text-white"></i>
+                <span class="text-xs text-white">Lugares</span>
+            </a>
+            <!-- Cuenta -->
+            <button type="button" class="inline-flex flex-col items-center justify-center px-5 rounded-e-full group hover:bg-blue-800">
+                <i class=" fi-sr-circle-user text-xl text-white"></i>
+                <span class="text-xs text-white">Cuenta</span>
+            </button>
         </div>
     </div>
-</nav>
+</div>
+
+<script>
+    document.getElementById('dashboard').addEventListener('click', function () {
+        document.querySelectorAll('nav a').forEach(function (el) {
+            el.classList.remove('pl-10');
+        });
+        this.classList.add('pl-10');
+        localStorage.setItem('fixedRightId', this.id);
+    });
+
+    document.getElementById('files').addEventListener('click', function () {
+        document.querySelectorAll('nav a').forEach(function (el) {
+            el.classList.remove('pl-10');
+        });
+        this.classList.add('pl-10');
+        localStorage.setItem('fixedRightId', this.id);
+    });
+
+    document.getElementById('posts').addEventListener('click', function () {
+        document.querySelectorAll('nav a').forEach(function (el) {
+            el.classList.remove('pl-10');
+        });
+        this.classList.add('pl-10');
+        localStorage.setItem('fixedRightId', this.id);
+    });
+
+    document.getElementById('places').addEventListener('click', function () {
+        document.querySelectorAll('nav a').forEach(function (el) {
+            el.classList.remove('pl-10');
+        });
+        this.classList.add('pl-10', 'bg-blue-800');
+        localStorage.setItem('fixedRightId', this.id);
+    });
+
+    document.getElementById('account').addEventListener('click', function () {
+        document.querySelectorAll('nav a').forEach(function (el) {
+            el.classList.remove('pl-10');
+        });
+        this.classList.add('pl-10', 'bg-blue-800');
+        localStorage.setItem('fixedRightId', this.id);
+    });
+
+    window.onload = function () {
+        const fixedRightId = localStorage.getItem('fixedRightId');
+        if (fixedRightId) {
+            document.querySelectorAll('nav a').forEach(function (el) {
+                el.classList.remove('pl-10');
+            });
+            document.getElementById(fixedRightId).classList.add('pl-10');
+            document.getElementById(fixedRightId).classList.add('bg-blue-800');
+        }
+    };
+</script>
