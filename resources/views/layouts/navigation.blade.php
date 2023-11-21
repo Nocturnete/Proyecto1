@@ -18,15 +18,19 @@
                     <span class="text-xl">Inicio</span>
                 </a>
                 <!-- Archivos -->
+                @can('viewAny', App\Models\File::class)
                 <a href="{{ route('files.index') }}" id="files" class="pt-2 pb-2 mr-8 p-2 mt-2 rounded-lg hover:bg-blue-800">
                     <i class="fi-sr-file-image text-2xl pr-2"></i>
                     <span class="text-xl">Archivos</span>
                 </a>
+                @endcan
                 <!-- Publicaciones -->
+                @can('viewAny', App\Models\Post::class)
                 <a href="{{ route('posts.index') }}" id="posts" class="pt-2 pb-2 mr-4 p-2 mt-2 rounded-lg  hover:bg-blue-800">
                     <i class="fi-sr-images text-2xl pr-2"></i>
                     <span class="text-xl">Publicaciones</span>
                 </a>
+                @endcan
                 <!-- Lugares -->
                 <a href="{{ route('places.index') }}" id="places" class="pt-2 pb-2 mr-8 p-2 mt-2 rounded-lg hover:bg-blue-800">
                     <i class="fi-sr-map-marker text-2xl pr-2"></i>
