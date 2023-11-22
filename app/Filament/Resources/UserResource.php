@@ -36,7 +36,7 @@ class UserResource extends Resource
                     ->relationship('role', 'name')
                     ->required(),
             ]);
-    }
+}
 
     public static function table(Table $table): Table
     {

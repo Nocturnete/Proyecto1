@@ -66,5 +66,5 @@ class FileResource extends Resource
             'create' => Pages\CreateFile::route('/create'),
             'edit' => Pages\EditFile::route('/{record}/edit'),
         ];
-    }    
+    }   
 }

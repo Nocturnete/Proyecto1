@@ -9,24 +9,50 @@ class Post extends Model
 {
     use HasFactory;
 
+    /**
+     * 
+     * Los atributos que son asignables masivamente.
+     *
+     */
     protected $fillable = ['author_id', 'file_id', 'title', 'description'];
 
+    /**
+     * 
+     * Relación: Un post pertenece a un archivo.
+     *
+     */
     public function file()
     {
         return $this->belongsTo(File::class);
     }
 
+    /**
+     * 
+     * Relación: Un post pertenece a un usuario (autor).
+     *
+     */
     public function user()
     {
         return $this->belongsTo(User::class, 'author_id');
     }
 
+    /**
+     * 
+     * Relación: Un post pertenece a un usuario (autor).
+     *
+     */
     public function author()
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * 
+     * Relación: Muchos usuarios pueden dar like a este post.
+     *
+     */
     public function liked()
     {
-       return $this->belongsToMany(User::class, 'likes');
+        return $this->belongsToMany(User::class, 'likes');
     }
 }

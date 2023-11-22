@@ -13,7 +13,19 @@ use App\Models\Like;
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 
+     * Constructor del controlador.
+     * 
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Post::class, 'post');
+    }
+
+    /**
+     * 
+     * Muestra una lista de los recursos.
+     * 
      */
 
     public function __construct()
@@ -23,173 +35,218 @@ class PostController extends Controller
 
     public function index()
     {
-        //
         return view("posts.index", [
             "posts" => Post::paginate(5),
-            // "files" => File::all(),
-            // "users" => User::all(),
         ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 
+     * Muestra el formulario para crear un nuevo recurso.
+     * 
      */
     public function create()
     {
-        //
         return view("posts.create");
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 
+     * Almacena un recurso recién creado en el almacenamiento.
+     * 
      */
     public function store(Request $request)
     {
-        //
+        // Validación de los datos de entrada.
         $validatedData = $request->validate([
             'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024',
             'title' => 'required|max:20',
-            'description' => 'required|max:200'
+            'description' => 'required|max:200',
         ]);
-       
+
+        // Obtención de los datos del formulario.
         $upload = $request->file('upload');
         $fileName = $upload->getClientOriginalName();
         $fileSize = $upload->getSize();
+
         \Log::debug("Storing file '{$fileName}' ($fileSize)...");
- 
+
+        // Almacenamiento del archivo en el sistema de archivos y la base de datos.
         $uploadName = time() . '_' . $fileName;
         $filePath = $upload->storeAs(
-            'uploads',      
-            $uploadName , 
+            'uploads',
+            $uploadName,
             'public'
         );
+
         if (\Storage::disk('public')->exists($filePath)) {
+
             \Log::debug("Disk storage OK");
+
             $fullPath = \Storage::disk('public')->path($filePath);
+
             \Log::debug("File saved at {$fullPath}");
+
+            // Creación de la entrada del archivo en la base de datos.
             $file = File::create([
                 'filepath' => $filePath,
                 'filesize' => $fileSize,
             ]);
+
             \Log::debug("DB storage OK");
+
+            // Creación de la publicación en la base de datos.
             $post = Post::create([
                 'author_id' => $user = auth()->user()->id,
                 'file_id' => $file->id,
                 'title' => $request->title,
                 'description' => $request->description,
             ]);
+
             return redirect()->route('posts.show', $post)
                 ->with('success', 'File successfully saved');
+                
         } else {
+
             \Log::debug("Disk storage FAILS");
+
             return redirect()->route("posts.create")
                 ->with('error', 'ERROR uploading file');
         }
     }
 
     /**
-     * Display the specified resource.
+     * 
+     * Muestra el recurso especificado.
+     * 
      */
     public function show(Post $post)
     {
-        //
         $fileExists = Storage::disk('public')->exists($post->file->filepath);
+
         if (!$fileExists) {
-            return redirect()->route('posts.index')->with('error', 'Fitxer no trobat');
+            return redirect()->route('posts.index')->with('error', 'Archivo no encontrado');
         }
-        if (!$post->id){
-            return redirect()->route('posts.index')->with('error', 'Post no trobat');
+
+        if (!$post->id) {
+            return redirect()->route('posts.index')->with('error', 'Publicación no encontrada');
         }
+
         return view('posts.show', compact('post'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 
+     * Muestra el formulario para editar el recurso especificado.
+     * 
      */
     public function edit(Post $post)
     {
-        //
         return view('posts.edit', compact('post'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * 
+     * Actualizar el recurso especificado en el almacenamiento.
+     *
      */
     public function update(Request $request, Post $post)
     {
-        //
-        // Validar los datos del formulario
+        // Validar los datos del formulario.
         $request->validate([
             'upload' => 'mimes:gif,jpeg,jpg,png|max:1024',
             'title' => 'required|max:20',
             'description' => 'required|max:200'
         ]);
 
+        // Si hay un nuevo archivo, eliminar el antiguo y almacenar el nuevo.
         if ($request->hasFile('upload')) {
-            // Elimina el archivo anterior del disco
             Storage::disk('public')->delete($post->file->filepath);
-    
-            // Sube el nuevo archivo al disco
+
             $newFile = $request->file('upload');
             $newFileName = time() . '_' . $newFile->getClientOriginalName();
             $newFilePath = $newFile->storeAs('uploads', $newFileName, 'public');
-            // Actualiza la información del archivo en la base de datos
-            // dd($post->file);
             $post->file->update([
                 'original_name' => $newFile->getClientOriginalName(),
                 'filesize' => $newFile->getSize(),
                 'filepath' => $newFilePath,
             ]);
         }
+
+        // Actualizar los detalles de la publicación en la base de datos.
         $post->update([
             'author_id' => $user = auth()->user()->id,
             'file_id' => $post->file->id,
             'title' => $request->title,
             'description' => $request->description,
         ]);
+
         return redirect()->route('posts.show', $post)->with('success', 'Archivo actualizado con éxito');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 
+     * Eliminar el recurso especificado del almacenamiento.
+     *
      */
     public function destroy(Post $post)
     {
+        // Eliminar el archivo asociado al post.
         Storage::disk('public')->delete($post->file->filepath);
+
+        // Eliminar la entrada del post y la entrada del archivo en la base de datos.
         $post->delete();
         $post->file->delete();
+
         return redirect()->route('posts.index')->with('success', 'Archivo eliminado con éxito');
     }
 
+    /**
+     * 
+     * Buscar publicaciones que coincidan con el término de búsqueda.
+     *
+     */
     public function search(Request $request)
     {
         $searchTerm = $request->input('search');
         $posts = Post::where('title', 'like', '%' . $searchTerm . '%')->paginate(5);
+
         return view('posts.index', ['posts' => $posts]);
     }
 
+    /**
+     * 
+     * Dar "like" a una publicación.
+     *
+     */
     public function like(Post $post)
     {
         $user = auth()->user();
-    
+
+        // Verificar si el usuario ya ha dado "like" a esta publicación.
         if (!$user->likes->contains($post->id)) {
             $user->likes()->attach($post);
             return redirect()->route('posts.index')->with('success', 'Like guardado');
         }
-    
+
         return redirect()->route('posts.index')->with('error', 'Ya has dado like a esta publicación');
     }
-    
+
+    /**
+     * 
+     * Eliminar el "like" de una publicación.
+     *
+     */
     public function unlike(Post $post)
     {
         $user = auth()->user();
-    
+
+        // Verificar si el usuario ha dado "like" a esta publicación antes de intentar eliminarlo.
         if ($user->likes->contains($post->id)) {
             $user->likes()->detach($post);
             return redirect()->route('posts.index')->with('success', 'Like eliminado');
         }
-    
+
         return redirect()->route('posts.index')->with('error', 'No has dado like a esta publicación previamente');
     }
-    
 }

@@ -14,16 +14,26 @@ class TestMail extends Mailable
     use Queueable, SerializesModels;
 
     /**
-     * Create a new message instance.
+     * 
+     * Los datos del contenido del correo electrónico.
+     *
+     */
+    protected $content;
+
+    /**
+     * 
+     * Crea una nueva instancia del mensaje.
+     *
      */
     public function __construct(array $content)
     {
         $this->content = $content;
     }
- 
 
     /**
-     * Get the message envelope.
+     * 
+     * Obtiene el sobre del mensaje.
+     *
      */
     public function envelope(): Envelope
     {
@@ -33,7 +43,9 @@ class TestMail extends Mailable
     }
 
     /**
-     * Get the message content definition.
+     * 
+     * Obtiene la definición del contenido del mensaje.
+     *
      */
     public function content()
     {
@@ -44,12 +56,11 @@ class TestMail extends Mailable
             ],
         );
     }
- 
 
     /**
-     * Get the attachments for the message.
+     * 
+     * Obtiene los adjuntos para el mensaje.
      *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
     public function attachments(): array
     {

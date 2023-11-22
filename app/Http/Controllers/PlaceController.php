@@ -14,20 +14,31 @@ use App\Http\Controllers\FileController;
 class PlaceController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 
+     * Constructor del controlador.
+     * 
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Place::class, 'place');
+    }
+
+    /**
+     * 
+     * Muestra una lista de los recursos.
+     * 
      */
     public function index()
     {
         return view("places.index", [
             "places" => Place::paginate(5),
-            // "files" => File::all(),
-            // "users" => User::all(),
         ]);
-
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 
+     * Muestra el formulario para crear un nuevo recurso.
+     * 
      */
     public function create()
     {
@@ -35,65 +46,82 @@ class PlaceController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 
+     * Almacena un recurso recién creado en el almacenamiento.
+     * 
      */
     public function store(Request $request)
     {
-        // Validar fitxer
+        // Validación de los datos de entrada.
         $validatedData = $request->validate([
-            'title'       => 'required',
-            'latitude'    => 'required',
-            'longitude'   => 'required',
-            'descripcion' => 'required',
+            'title'       => 'required|max:30',
+            'latitude'    => 'required|max:9',
+            'longitude'   => 'required|max:9',
+            'descripcion' => 'required|max:200',
             'upload'      => 'required|mimes:gif,jpeg,jpg,png|max:1024',
         ]);
-        
-        // DATOS DEL FORM      
-        $title        = $request->get('title');        
-        $latitude    = $request->get('latitude');
-        $longitude   = $request->get('longitude');
-        $description = $request->get('descripcion');
-        $upload = $request->file('upload');
-        $fileName = $upload->getClientOriginalName();
-        $fileSize = $upload->getSize();
+
+        // Obtención de los datos del formulario.
+        $title        = $request->get('title');
+        $latitude     = $request->get('latitude');
+        $longitude    = $request->get('longitude');
+        $description  = $request->get('descripcion');
+        $upload       = $request->file('upload');
+        $fileName     = $upload->getClientOriginalName();
+        $fileSize     = $upload->getSize();
+
         \Log::debug("Storing file '{$fileName}' ($fileSize)...");
-    
-        // Pujar fitxer al disc dur
+
+        // Almacenamiento del archivo en el sistema de archivos y la base de datos.
         $uploadName = time() . '_' . $fileName;
         $filePath = $upload->storeAs(
-            'uploads',      // Path
-            $uploadName ,   // Filename
-            'public'        // Disk
+            'uploads',
+            $uploadName,
+            'public'
         );
+
         if (\Storage::disk('public')->exists($filePath)) {
+
             \Log::debug("Disk storage OK");
+
             $fullPath = \Storage::disk('public')->path($filePath);
+
             \Log::debug("File saved at {$fullPath}");
-            // Desar dades a BD
+
+            // Creación de la entrada del archivo en la base de datos.
             $file = File::create([
                 'filepath' => $filePath,
                 'filesize' => $fileSize,
             ]);
+
             \Log::debug("DB storage OK");
+
+            // Creación del lugar en la base de datos.
             $place = Place::create([
-                'title'       => $request->title,
+                'title'       => $title,
                 'latitude'    => $latitude,
                 'longitude'   => $longitude,
-                'descripcion' => $request->descripcion,
+                'descripcion' => $description,
                 'file_id'     => $file->id,
                 'author_id'   => auth()->user()->id,
             ]);
+
             return redirect()->route('places.show', $place)
                 ->with('success', 'File successfully saved');
+
         } else {
+
             \Log::debug("Disk storage FAILS");
+
             return redirect()->route("places.create")
                 ->with('error', 'ERROR uploading file');
         }
     }
 
     /**
-     * Display the specified resource.
+     * 
+     * Muestra el recurso especificado.
+     * 
      */
     public function show(Place $place)
     {
@@ -105,7 +133,9 @@ class PlaceController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 
+     * Muestra el formulario para editar el recurso especificado.
+     * 
      */
     public function edit(Place $place)
     {
@@ -117,82 +147,104 @@ class PlaceController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 
+     * Actualiza el recurso especificado en el almacenamiento.
+     * 
      */
     public function update(Request $request, Place $place)
     {
-        // Validar fitxer
+        // Validación de los datos de entrada.
         $request->validate([
-            'title' => 'required|max:25',
-            'latitude'    => 'required',
-            'longitude'   => 'required',
-            'descripcion' => 'required|max:250',
-            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024',
+            'title'       => 'required|max:30',
+            'latitude'    => 'required|max:9',
+            'longitude'   => 'required|max:9',
+            'descripcion' => 'required|max:200',
+            'upload'      => 'required|mimes:gif,jpeg,jpg,png|max:1024',
         ]);
-        
-        // Obtenir dades del fitxer
+
+        // Actualización del archivo y detalles del lugar en la base de datos.
         if ($request->hasFile('upload')) {
             Storage::disk('public')->delete($place->file->filepath);
-            
+
             $newFile = $request->file('upload');
             $newFileName = time() . '_' . $newFile->getClientOriginalName();
             $newFilePath = $newFile->storeAs('uploads', $newFileName, 'public');
-    
-            // Actualiza la información del archivo en la base de datos
+
             $place->file->update([
                 'original_name' => $newFile->getClientOriginalName(),
-                'filesize' => $newFile->getSize(),
-                'filepath' => $newFilePath,
+                'filesize'      => $newFile->getSize(),
+                'filepath'      => $newFilePath,
             ]);
         }
+
+        // Actualización de los detalles del lugar en la base de datos.
         $place->update([
-            'title' => $request->title,
-            'coordenadas' => $request->coordenadas,
+            'title'       => $request->title,
+            'latitude'    => $request->latitude,
+            'longitude'   => $request->longitude,
             'descripcion' => $request->descripcion,
-            'file_id' => $place->file->id,
+            'file_id'     => $place->file->id,
         ]);
         return redirect()->route('places.show', $place)->with('success', 'File successfully saved');
     }
-    
+
     /**
-     * Remove the specified resource from storage.
+     * 
+     * Elimina el recurso especificado del almacenamiento.
+     * 
      */
     public function destroy(Place $place)
     {
+        // Eliminación del archivo y entrada del lugar en la base de datos.
         Storage::disk('public')->delete($place->file->filepath);
         $place->delete();
         $place->file->delete();
+
         return redirect()->route('places.index')->with('success', 'Archivo eliminado con éxito');
     }
 
+    /**
+     * 
+     * Realiza una búsqueda de recursos basada en un término de búsqueda.
+     * 
+     */
     public function search(Request $request)
     {
         $searchTerm = $request->input('search');
-        $places = Place::where('title', 'like', '%'. $searchTerm . '%')->paginate(5);
+        $places = Place::where('title', 'like', '%' . $searchTerm . '%')->paginate(5);
+
         return view('places.index', ['places' => $places]);
     }
 
+    /**
+     * 
+     * Marca un lugar como favorito para el usuario autenticado.
+     * 
+     */
     public function favorite(Place $place)
     {
         $user = auth()->user();
-    
+
         if (!$user->favorites->contains($place->id)) {
             $user->favorites()->attach($place);
-            return redirect()->route('places.index');
         }
-    
+
         return redirect()->route('places.index');
     }
-    
+
+    /**
+     * 
+     * Desmarca un lugar como favorito para el usuario autenticado.
+     * 
+     */
     public function unfavorite(Place $place)
     {
         $user = auth()->user();
-    
+
         if ($user->favorites->contains($place->id)) {
             $user->favorites()->detach($place);
-            return redirect()->route('places.index');
         }
-    
+
         return redirect()->route('places.index');
     }
 }
