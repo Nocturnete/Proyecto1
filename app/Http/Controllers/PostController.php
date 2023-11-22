@@ -210,6 +210,7 @@ class PostController extends Controller
      */
     public function like(Post $post)
     {
+        $this->authorize('create', $post);
         $user = auth()->user();
 
         // Verificar si el usuario ya ha dado "like" a esta publicación.
@@ -228,6 +229,7 @@ class PostController extends Controller
      */
     public function unlike(Post $post)
     {
+        $this->authorize('create', $post);
         $user = auth()->user();
 
         // Verificar si el usuario ha dado "like" a esta publicación antes de intentar eliminarlo.
