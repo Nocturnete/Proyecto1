@@ -2,8 +2,8 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <div class="h-full w-full p-4 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-md border shadow-lg bg-white border-white bg-opacity-70 dark:bg-black dark:border-black dark:bg-opacity-50 ">
-        <div class="pt-5 pb-5 sm:mx-auto sm:w-full sm:max-w-sm">
+    <div class="h-full w-full p-4 lg:bg-white lg:rounded-lg lg:bg-clip-padding lg:backdrop-filter lg:backdrop-blur-md lg:border lg:shadow-lg lg:border-white lg:bg-opacity-70 dark:border-black dark:bg-opacity-50 md:bg-white md:rounded-lg md:bg-clip-padding md:backdrop-filter md:backdrop-blur-md md:border md:shadow-lg md:border-white md:bg-opacity-70 dark:lg:bg-black dark:lg:border-black dark:lg:bg-opacity-50 dark:md:bg-black dark:md:border-black dark:md:bg-opacity-50">
+            <div class="pt-5 pb-5 sm:mx-auto sm:w-full sm:max-w-sm">
             <i class="fi-sr-user text-8xl flex w-full justify-center text-customblue"></i>
         </div>
 
@@ -26,7 +26,7 @@
                 <!-- Contraseña -->
                 <div class="rounded-lg">
                     <div class="relative bg-inherit">
-                        <input type="password" id="password" name="password" placeholder="Contraseña" class="peer w-full h-10 rounded-lg placeholder-transparent text-black ring-1 focus:outline-none dark:bg-gray-800 dark:text-white @error('password') ring-red-500 @enderror" />
+                        <input type="password" id="password" name="password" placeholder="Contraseña" class="peer w-full h-10 rounded-lg placeholder-transparent text-black ring-1 focus:outline-none dark:bg-gray-800 dark:text-white @error('password') ring-red-600 @enderror" />
                         <label for="password" class="absolute cursor-text left-0 -top-3 mx-2 px-1 transition-all text-sm pointer-events-none bg-white rounded-lg peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-sm peer-focus:bg-customblue peer-focus:text-white peer-focus:rounded-lg dark:bg-gray-800 dark:text-white">Contraseña</label>
                     </div>
                     @error('password')
@@ -46,7 +46,7 @@
                     <!-- Restablecer la contraseña -->
                     <div class="flex items-center mt-4">
                         @if (Route::has('password.request'))
-                        <a class="underline text-sm text-black dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:text-white dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">{{ __('¿Has olvidado la contraseña?') }}</a>
+                        <a class="underline text-sm text-black dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:text-blue-500 dark:text-white dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">{{ __('¿Has olvidado la contraseña?') }}</a>
                         @endif
                     </div>
                 </div>
@@ -59,8 +59,8 @@
 
             <!-- Registrar-se -->
             <div>
-                <a href="{{ route('register') }}" class="flex w-full justify-center text-sm font-bold leading-6 text-customblue dark:text-white">Registrar-se</a>
+                <a href="{{ route('register') }}" class="flex w-full justify-center text-sm font-bold leading-6 text-customblue hover:text-blue-800 dark:text-white">Registrar-se</a>
             </div>
         </div>
-    </div><
+    </div>
 </x-guest-layout>

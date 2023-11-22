@@ -1,8 +1,7 @@
 <x-guest-layout>
-    <div
-        class="h-full w-full p-4 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-md border shadow-lg bg-white border-white bg-opacity-70 dark:bg-black dark:border-black dark:bg-opacity-50 ">
+    <div class="h-full w-full p-4 lg:bg-white lg:rounded-lg lg:bg-clip-padding lg:backdrop-filter lg:backdrop-blur-md lg:border lg:shadow-lg lg:border-white lg:bg-opacity-70 dark:border-black dark:bg-opacity-50 md:bg-white md:rounded-lg md:bg-clip-padding md:backdrop-filter md:backdrop-blur-md md:border md:shadow-lg md:border-white md:bg-opacity-70 dark:lg:bg-black dark:lg:border-black dark:lg:bg-opacity-50 dark:md:bg-black dark:md:border-black dark:md:bg-opacity-50">    
         <div class="pt-5 pb-5 sm:mx-auto sm:w-full sm:max-w-sm">
-            <i class="fi-sr-user text-8xl flex w-full justify-center text-customblue"></i>
+            <i class="fi-sr-user-add text-8xl flex w-full justify-center text-customblue"></i>
         </div>
 
         <div class="z-10 mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -62,7 +61,7 @@
 
             <!-- Iniciar sesión -->
             <div>
-                <a href="{{ route('login') }}" class="flex w-full justify-center text-sm font-bold leading-6 text-customblue dark:text-white">{{ __('¿Ya tienes cuenta?') }}</a>
+                <a href="{{ route('login') }}" class="flex w-full justify-center text-sm font-bold leading-6 text-customblue hover:text-blue-800 dark:text-white">{{ __('¿Ya tienes cuenta?') }}</a>
             </div>
         </div>
     </div>

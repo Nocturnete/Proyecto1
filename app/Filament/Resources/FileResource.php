@@ -38,6 +38,7 @@ class FileResource extends Resource
     {
         return $table
             ->columns([
+                // Tables\Columns\TextColumn::make('filepath'),
                 Tables\Columns\TextColumn::make('filepath'),
                 Tables\Columns\TextColumn::make('filesize'),
                 Tables\Columns\TextColumn::make('created_at')
@@ -61,7 +62,9 @@ class FileResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageFiles::route('/'),
+            'index' => Pages\ListFiles::route('/'),
+            'create' => Pages\CreateFile::route('/create'),
+            'edit' => Pages\EditFile::route('/{record}/edit'),
         ];
-    }    
+    }   
 }

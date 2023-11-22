@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,23 +40,24 @@ Route::middleware('auth')->group(function () {
 Route::get('mail/test', [MailController::class, 'test']);
 
 Route::resource('files', FileController::class)
-    ->middleware(['auth', 'role:2, 3']);
+    ->middleware(['auth']);
 
 Route::resource('places', PlaceController::class)
-    ->middleware(['auth', 'role.any:1, 2, 3']);
-
-Route::get('places.search', 'App\Http\Controllers\PlaceController@search')->name('places.search');
+    ->middleware(['auth']);
 
 Route::resource('posts', PostController::class)
-    ->middleware(['auth', 'role.any:1, 2, 3']);
+    ->middleware(['auth']);
 
+// BUSCADOR
+Route::get('places.search', 'App\Http\Controllers\PlaceController@search')->name('places.search');
 Route::get('posts.search', 'App\Http\Controllers\PostController@search')->name('posts.search');
 
+// FAVORITOS
 Route::post('/places/{place}/favorites', 'App\Http\Controllers\PlaceController@favorite')->name('places.favorites');
 Route::delete('/places/{place}/favorites', 'App\Http\Controllers\PlaceController@unfavorite')->name('places.unfavorites');
 
+// ME GUSTA
 Route::post('/posts/{post}/likes', 'App\Http\Controllers\PostController@like')->name('posts.likes');
 Route::delete('/posts/{post}/likes', 'App\Http\Controllers\PostController@unlike')->name('posts.unlike');
-
 
 require __DIR__.'/auth.php';

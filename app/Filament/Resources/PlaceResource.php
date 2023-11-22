@@ -17,48 +17,49 @@ class PlaceResource extends Resource
 {
     protected static ?string $model = Place::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-map';
+    protected static ?string $navigationIcon = 'heroicon-o-globe';
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\Fieldset::make('File')
-                    ->relationship('file')
-                    ->saveRelationshipsWhenHidden()
-                    ->schema([
-                        Forms\Components\Hidden::make('file_id'),
-                        Forms\Components\FileUpload::make('file')
-                            ->required()
-                            ->image()
-                            ->maxSize(2048)
-                            ->directory('uploads')
-                                ->getUploadedFileNameForStorageUsing(function (\Livewire\TemporaryUploadedFile $file): string {
-                                    return time() . '_' . $file->getClientOriginalName();
-                            }),
-                    ]),
-                Forms\Components\Fieldset::make('Place')
-                    ->schema([
-                        Forms\Components\Select::make('author_id')
-                            ->label('Author')
-                            ->options(\App\Models\User::pluck('name', 'id')->all())
-                            ->default(auth()->id())
-                            ->required(),
-                        Forms\Components\Hidden::make('file_id')
-                            ->required(),
-                        Forms\Components\RichEditor::make('title')
-                            ->required(),
-                        Forms\Components\RichEditor::make('latitude')
-                            ->required(),
-                        Forms\Components\RichEditor::make('longitude')
-                            ->required(),
-                        Forms\Components\RichEditor::make('descripcion')
-                            ->required(),
-                    ]),
-                ]);
-        }
 
-    
+        return $form
+        ->schema([
+            Forms\Components\Fieldset::make('File')
+                ->relationship('file')
+                ->saveRelationshipsWhenHidden()
+                ->schema([
+                    Forms\Components\Hidden::make('file_id'),
+                    Forms\Components\FileUpload::make('filepath') 
+                        ->required()
+                        ->image()
+                        ->maxSize(2048)
+                        ->directory('uploads')
+                        ->getUploadedFileNameForStorageUsing(function (\Illuminate\Http\UploadedFile $file): string {
+                            return time() . '_' . $file->getClientOriginalName();
+                        }),
+                ]),
+            Forms\Components\Fieldset::make('Place')
+                ->schema([
+                    Forms\Components\Select::make('author_id')
+                        ->label('Author')
+                        ->options(\App\Models\User::pluck('name', 'id')->all())
+                        ->default(auth()->id()) 
+                        ->required(),
+                    Forms\Components\Hidden::make('file_id'),
+                    // Camps recurs Post / Place...
+                    Forms\Components\RichEditor::make('title') 
+                        ->required(),
+                    Forms\Components\TextInput::make('latitude') 
+                        ->required()
+                        ->numeric(), 
+                    Forms\Components\TextInput::make('longitude') 
+                        ->required()
+                        ->numeric(), 
+                    Forms\Components\RichEditor::make('descripcion') 
+                        ->required(),
+                    ]),
+        ]);
+    }
 
     public static function table(Table $table): Table
     {
@@ -87,11 +88,20 @@ class PlaceResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManagePlaces::route('/'),
+            'index' => Pages\ListPlaces::route('/'),
+            'create' => Pages\CreatePlace::route('/create'),
+            'edit' => Pages\EditPlace::route('/{record}/edit'),
         ];
     }    
 }

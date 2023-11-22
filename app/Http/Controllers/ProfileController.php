@@ -12,7 +12,9 @@ use Illuminate\View\View;
 class ProfileController extends Controller
 {
     /**
-     * Display the user's profile form.
+     * 
+     * Mostrar el formulario de edición del perfil del usuario.
+     *
      */
     public function edit(Request $request): View
     {
@@ -22,12 +24,15 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update the user's profile information.
+     * 
+     * Actualizar la información del perfil del usuario.
+     *
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
 
+        // Si el usuario cambia su dirección de correo electrónico, se restablece la verificación.
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
@@ -38,7 +43,9 @@ class ProfileController extends Controller
     }
 
     /**
-     * Delete the user's account.
+     * 
+     * Eliminar la cuenta del usuario.
+     *
      */
     public function destroy(Request $request): RedirectResponse
     {

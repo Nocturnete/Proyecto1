@@ -12,8 +12,7 @@
             <div class="lg:flex lg:justify-center">
                 <form class="flex items-center mb-8" action="{{ route('places.search') }}" method="GET">
                     <div class="relative w-full lg:w-80">
-                        <input type="search" name="search" placeholder="Buscar"
-                            class="bg-gray-200 h-10 px-5 pr-10 rounded-full text-sm focus:outline-none w-full">
+                        <input type="search" name="search" placeholder="Buscar" class="bg-gray-200 h-10 px-5 pr-10 rounded-full text-sm focus:outline-none w-full">
                         <button type="submit" class="absolute inset-y-0 right-0 px-3 py-2">
                             <i class="fi-rr-search dark:text-black"></i>
                         </button>
@@ -29,8 +28,7 @@
             </div>
 
             <!-- LUGARES -->
-            <div class="w-full mx-auto h-full max-w-[800px]">
-
+            <div class="w-full mx-auto h-full border-3 border-red-500">
                 <div class="w-full mx-auto h-full flex flex-col">
                     @foreach ($places as $place)
                     <a href="{{ route('places.show', $place->id) }}">
@@ -43,23 +41,20 @@
                                 <div class="flex justify-between item-center">
                                     <!-- TITULO -->
                                     <div class="flex items-center">
-                                        <h3
-                                            class="font-black text-gray-800 text-2xl md:text-3xl lg:text-3xl dark:text-white">
-                                            {{ $place->title }}</h3>
+                                        <h3 class="font-black text-gray-800 text-2xl md:text-3xl lg:text-3xl dark:text-white">
+                                            {!! $place->title !!}
+                                        </h3>
                                     </div>
                                     <!-- FAVORITOS -->
                                     <div class="flex items-center">
                                         @if(auth()->check() && auth()->user()->favorites->contains($place->id))
-                                        <form action="{{ route('places.unfavorites', ['place' => $place->id]) }}"
-                                            method="POST" class="flex items-center">
+                                        <form action="{{ route('places.unfavorites', ['place' => $place->id]) }}" method="POST" class="flex items-center">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="ml-8 pt-2"><i
-                                                    class="fi-sr-star ml-3 text-yellow-500 text-2xl"></i></button>
+                                            <button class="ml-8 pt-2"><i class="fi-sr-star ml-3 text-yellow-500 text-2xl"></i></button>
                                         </form>
                                         @else
-                                        <form action="{{ route('places.favorites', ['place' => $place->id]) }}"
-                                            method="POST" class="flex items-center">
+                                        <form action="{{ route('places.favorites', ['place' => $place->id]) }}" method="POST" class="flex items-center">
                                             @csrf
                                             <button class="ml-8 pt-2"><i class="fi-sr-star ml-3 text-2xl"></i></button>
                                         </form>
@@ -70,7 +65,8 @@
                                 </div>
                                 <!-- DESCRIPCION -->
                                 <p class="text-gray-500 text-lg md:text-lg lg:text-xl dark:text-white">
-                                    {{ $place->descripcion }}</p>
+                                    {!! $place->description !!}
+                                </p>
                             </div>
                         </div>
                     </a>

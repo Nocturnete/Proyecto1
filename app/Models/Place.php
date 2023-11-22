@@ -9,6 +9,11 @@ class Place extends Model
 {
     use HasFactory;
     
+    /**
+     * 
+     * Los atributos que son asignables masivamente.
+     *
+     */
     protected $fillable = [
         'title',
         'latitude',
@@ -18,20 +23,33 @@ class Place extends Model
         'author_id',
     ];
 
+    /**
+     * 
+     * Relación: Un lugar pertenece a un archivo.
+     *
+     */
     public function file()
     {
         return $this->belongsTo(File::class);
     }
 
+    /**
+     * 
+     * Relación: Un lugar pertenece a un usuario (autor).
+     *
+     */
     public function user()
     {
         return $this->belongsTo(User::class, 'author_id');
     }
 
+    /**
+     * 
+     * Relación: Muchos usuarios pueden tener este lugar como favorito.
+     *
+     */
     public function favorited()
     {
         return $this->belongsToMany(User::class, 'favorites');
     }
-
 }
-    
