@@ -57,7 +57,14 @@ class PostPolicy
     public function delete(User $user, Post $post): bool
     {
         //
-        return $user->role_id === 1 && $user->id === $post->author_id;
+        if ($user->role_id === 1 && $user->id === $post->author_id) {
+            return $user->role_id;
+        } elseif ($user->role_id === 2) {
+            return true;
+        }
+        return false;
+
+        // return $user->role_id === 1 && $user->id === $post->author_id;
     }
 
     /**

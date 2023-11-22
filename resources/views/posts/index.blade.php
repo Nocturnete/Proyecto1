@@ -11,23 +11,15 @@
             <div class="lg:flex lg:justify-center">
                 <form class="flex items-center mb-8" action="{{ route('posts.search') }}" method="GET">
                     <div class="relative w-full lg:w-96">
-<<<<<<< HEAD
-                        <input type="search" name="search" placeholder="Buscar" class="bg-gray-200 h-10 px-5 pr-10 rounded-full text-sm focus:outline-none w-full">
-=======
                         <input type="search" name="search" placeholder="Buscar"
                             class="bg-gray-200 h-10 px-5 pr-10 rounded-full text-sm focus:outline-none w-full">
->>>>>>> origin/b0.2-gerard
                         <button type="submit" class="absolute inset-y-0 right-0 px-3 py-2">
                             <i class="fi-rr-search dark:text-black"></i>
                         </button>
                     </div>
                 </form>
             </div>
-<<<<<<< HEAD
-            
-=======
 
->>>>>>> origin/b0.2-gerard
             <!-- CREAR LUGAR -->
             <div class="lg:m-6 flex items-center justify-center">
                 <a href="{{ route('posts.create') }}">
@@ -74,11 +66,12 @@
 
                                 <!-- Descripcion -->
                                 <div>
-                                    <h1 class="text-2xl mt-2 ml-4 font-bold text-gray-800 cursor-pointer dark:text-white">
-                                        {{ $post->title }}</h1>
-                                    <p class="ml-4 mt-1 mb-2 pb-4 text-gray-700 dark:text-white">
-                                        {{ $post->description }}
-                                    </p>
+                                    <div>
+                                        {!! $post->title !!}
+                                    </div>
+                                    <div>
+                                        {!! $post->description !!}
+                                    </div>
                                 </div>
                             </div>
                         </a>

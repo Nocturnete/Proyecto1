@@ -50,7 +50,12 @@ class PlacePolicy
     {
         // El usuario puede actualizar un lugar si su rol es 1
         // y si el usuario es el autor del lugar.
-        return $user->role_id === 1 && $user->id === $place->author_id;
+        if ($user->role_id === 1 && $user->id === $place->author_id) {
+            return $user->role_id;
+        } elseif ($user->role_id === 2) {
+            return true;
+        }
+        return false;
     }
 
     /**
