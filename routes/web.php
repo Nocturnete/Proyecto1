@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\MenuController;
 
 /*
 |--------------------------------------------------------------------------

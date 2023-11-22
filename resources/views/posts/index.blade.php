@@ -44,19 +44,21 @@
 
                                     <!-- LIKE -->
                                     <div class="flex space-x-2">
-                                        @if(auth()->check() && auth()->user()->likes->contains($post->id))
-                                        <form action="{{ route('posts.unlike', ['post' => $post->id]) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"><i class="fi-sr-heart text-customred"></i></button>
-                                        </form>
-                                        @else
-                                        <form action="{{ route('posts.likes', ['post' => $post->id]) }}" method="post">
-                                            @csrf
-                                            <button type="submit"><i class="fi-sr-heart"></i></button>
-                                        </form>
-                                        @endif
-                                        <p>{{ $post->liked()->count() }}</p>
+                                    @can('create', App\Models\Post::class)
+                                    @if(auth()->check() && auth()->user()->likes->contains($post->id))
+                                    <form action="{{ route('posts.unlike', ['post' => $post->id]) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"><i class="fi-sr-heart text-customred"></i></button>
+                                    </form>
+                                    @else
+                                    <form action="{{ route('posts.likes', ['post' => $post->id]) }}" method="post">
+                                        @csrf
+                                        <button type="submit"><i class="fi-sr-heart"></i></button>
+                                    </form>
+                                    @endif
+                                    @endcan
+                                    <p>{{ $post->liked()->count() }}</p>
                                     </div>
                                 </div>
 
