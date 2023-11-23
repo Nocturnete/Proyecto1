@@ -11,7 +11,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}   
+            {{ __('Files') }}   
         </h2>
     </x-slot>
     <div class="py-12">
@@ -21,12 +21,12 @@
                     <form method="post" action="{{ route('files.store') }}" enctype="multipart/form-data"> 
                         @csrf
                         <div class="form-group">
-                            <label for="upload">File:</label>
+                            <label for="upload">{{ __("Imagen") }}:</label>
                             <input type="file" class="form-control" name="upload"/>
                         </div>
-                        <button type="submit" class="btn btn-primary">Create</button>
-                        <button type="reset" class="btn btn-secondary">Reset</button>
-                        <a href="{{ route('files.index') }}">Volver</a>
+                        <button type="submit" class="btn btn-primary">{{ __("Crear") }}</button>
+                        <button type="reset" class="btn btn-secondary">{{ __("Cancelar") }}</button>
+                        <a href="{{ route('files.index') }}">{{ __("Volver") }}</a>
                     </form>
                 </div>
             </div>

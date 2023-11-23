@@ -15,7 +15,7 @@
                 <div class="rounded-lg">
                     <div class="relative bg-inherit">
                         <input type="email" id="email" name="email" autocomplete="email" placeholder="Correo electrónico" class=" peer w-full h-10 rounded-lg placeholder-transparent text-black ring-1 focus:outline-none dark:bg-gray-800 dark:text-white @error('email') ring-red-500 @enderror" />
-                        <label for="email" class="absolute cursor-text left-0 -top-3 bg-white rounded-lg mx-2 px-1 text-sm pointer-events-none peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-sm transition-all peer-focus:bg-customblue peer-focus:text-white peer-focus:rounded-lg dark:bg-gray-800 dark:text-white">Correo electrónico</label>
+                        <label for="email" class="absolute cursor-text left-0 -top-3 bg-white rounded-lg mx-2 px-1 text-sm pointer-events-none peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-sm transition-all peer-focus:bg-customblue peer-focus:text-white peer-focus:rounded-lg dark:bg-gray-800 dark:text-white">{{ __('Correo electrónico') }}</label>
                     </div>
                     @error('email')
                     <p class="mt-2 text-red-500 text-sm">{{ $message }}</p>
@@ -27,7 +27,7 @@
                 <div class="rounded-lg">
                     <div class="relative bg-inherit">
                         <input type="password" id="password" name="password" placeholder="Contraseña" class="peer w-full h-10 rounded-lg placeholder-transparent text-black ring-1 focus:outline-none dark:bg-gray-800 dark:text-white @error('password') ring-red-600 @enderror" />
-                        <label for="password" class="absolute cursor-text left-0 -top-3 mx-2 px-1 transition-all text-sm pointer-events-none bg-white rounded-lg peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-sm peer-focus:bg-customblue peer-focus:text-white peer-focus:rounded-lg dark:bg-gray-800 dark:text-white">Contraseña</label>
+                        <label for="password" class="absolute cursor-text left-0 -top-3 mx-2 px-1 transition-all text-sm pointer-events-none bg-white rounded-lg peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-sm peer-focus:bg-customblue peer-focus:text-white peer-focus:rounded-lg dark:bg-gray-800 dark:text-white">{{ __('Contraseña') }}</label>
                     </div>
                     @error('password')
                     <p class="mt-2 text-red-500 text-sm">{{ $message }}</p>

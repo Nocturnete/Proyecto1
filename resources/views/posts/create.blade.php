@@ -12,21 +12,21 @@
                     <form method="post" action="{{ route('posts.store') }}" enctype="multipart/form-data" class="bg-white p-4 rounded-lg shadow-md">
                     @csrf
                     <div class="mb-4">
-                        <label for="title" class="block text-gray-700 font-bold">Título:</label>
+                        <label for="title" class="block text-gray-700 font-bold">{{ __('Titulo') }}:</label>
                         <input type="text" id="title" name="title" class="w-full p-2 border rounded-md">
                     </div>
                     <div class="mb-4">
-                        <label for="description" class="block text-gray-700 font-bold">Descripción:</label>
+                        <label for="description" class="block text-gray-700 font-bold">{{ __('Descripcion') }}:</label>
                         <textarea id="description" name="description" class="w-full p-2 border rounded-md" rows="4"></textarea>
                     </div>
                     <div class="mb-4">
-                        <label for="upload" class="block text-gray-700 font-bold">Archivo:</label>
+                        <label for="upload" class="block text-gray-700 font-bold">{{ __('Imagen') }}:</label>
                         <input type="file" id="upload" name="upload" value="" class="w-full p-2 border rounded-md">
                     </div>
                     <div class="flex space-x-4">
-                        <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600">Crear</button>
-                        <button type="reset" class="bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-md hover:bg-gray-400">Limpiar</button>
-                        <a href="{{ route('posts.index') }}" class="bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-md hover:bg-gray-400">Volver</a>
+                        <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600">{{ __('Crear') }}</button>
+                        <button type="reset" class="bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-md hover:bg-gray-400">{{ __('Limpiar') }}</button>
+                        <a href="{{ route('posts.index') }}" class="bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-md hover:bg-gray-400">{{ __('Volver') }}</a>
                     </div>
                 </form>
                 </div>

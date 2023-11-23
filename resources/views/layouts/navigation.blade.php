@@ -57,7 +57,7 @@
                 </a>
 
                 <!-- IDIOMA -->
-
+                <x-language-switcher />
             </nav>
         </div>
     </div>

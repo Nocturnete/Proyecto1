@@ -1,13 +1,14 @@
 <?php
 
 use App\Models\Place;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\MailController;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use App\Http\Controllers\FileController;
-use App\Http\Controllers\PlaceController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\FileController;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,10 @@ Route::post('/places/{place}/favorites', 'App\Http\Controllers\PlaceController@f
     ->middleware('can:create,place');
 
 Route::delete('/places/{place}/favorites', 'App\Http\Controllers\PlaceController@unfavorite')->name('places.unfavorites');
+
+// MULTI-LENGUAJE
+Route::get('/language/{locale}', [LanguageController::class, 'language'])->name('language');
+
 
 // ME GUSTA
 Route::post('/posts/{post}/likes', 'App\Http\Controllers\PostController@like')->name('posts.likes');

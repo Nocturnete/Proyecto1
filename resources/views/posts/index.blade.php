@@ -39,7 +39,7 @@
                                     <!-- USUARIO -->
                                     <div class="flex items-center space-x-2">
                                         <h2 class="text-gray-800 dark:text-white font-bold cursor-pointer">
-                                            {{ $post->user ? $post->user->name : 'Usuario Desconocido' }}</h2>
+                                            {{ $post->user ? $post->user->name : __('Usuario Desconocido') }}</h2>
                                     </div>
 
                                     <!-- LIKE -->

@@ -23,32 +23,35 @@
                         @csrf
                         @method('PUT')
                         <div class="mb-4">
-                            <label for="title" class="block text-gray-700 font-bold">Titulo:</label>
+                            <label for="title" class="block text-gray-700 font-bold">{{ __('Titulo') }}:</label>
                             <input type="text" name="title" value="{{ $place->title }}" class="w-full p-2 border rounded-md" id="title">
                         </div>
                         <div class="mb-4">
-                            <label for="latitude" class="block text-gray-700 font-bold">Latitut:</label>
+                            <label for="latitude" class="block text-gray-700 font-bold">{{ __('Latitud') }}:</label>
                             <input type="text" name="latitude" value="{{ $place->latitude }}" class="w-full p-2 border rounded-md" id="latitude">
                         </div>
                         <div class="mb-4">
-                            <label for="longitude" class="block text-gray-700 font-bold">Longitud:</label>
+                            <label for="longitude" class="block text-gray-700 font-bold">{{ __('Longitud') }}:</label>
                             <input type="text" name="longitude" value="{{ $place->longitude }}" class="w-full p-2 border rounded-md" id="longitude">
                         </div>
                         <div class="mb-4">
-                            <label for="descripcion">Descripcion:</label>
+                            <label for="descripcion">{{ __('Descripcion') }}:</label>
                             <textarea name="descripcion" id="descripcion" class="w-full p-2 border rounded-md" rows="4">{{ $place->descripcion }}</textarea>
                         </div>
                         <div class="mb-4">
-                            <label for="imagen" class="block text-gray-700 font-bold">Imagen actual:</label>
+                            <label for="imagen" class="block text-gray-700 font-bold">{{ __('Imagen actual') }}:</label>
                             <img src="{{ asset('storage/' . $place->file->filepath) }}" alt="Image" class="w-200 mb-4">
                         </div>
                         <div class="mb-4">
-                            <label for="upload" class="block text-gray-700 text-sm font-bold mb-2">Selecciona un nuevo archivo:</label>
+                            <label for="upload" class="block text-gray-700 text-sm font-bold mb-2">{{ __('Selecciona un nuevo archivo') }}:</label>
                             <input type="file" name="upload" id="upload" class="border rounded w-full py-2 px-3 text-gray-700">
                         </div>
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Guardar</button>
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">{{ __('Guardar') }}</button>
                     </form>
-                    <a href="{{ route('places.index') }}" class="mt-4 inline-block text-gray-500 hover:text-gray-700">Volver</a>
+                    <a href="{{ route('places.index') }}" class="mt-4 inline-block text-gray-500 hover:text-gray-700">{{ __('Volver') }}</a>
+                </div>
+            </div>
+        </div>
     </div>
 
 </x-app-layout>

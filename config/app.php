@@ -97,7 +97,13 @@ return [
     */
 
     'fallback_locale' => 'en',
-
+    
+    'available_locales' => [
+        'ca' => 'Català',
+        'es' => 'Castellano',
+        'en' => 'English',
+        'fr' => 'Frances',
+    ],
     /*
     |--------------------------------------------------------------------------
     | Faker Locale
