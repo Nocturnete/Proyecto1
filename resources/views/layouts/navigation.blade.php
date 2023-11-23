@@ -13,38 +13,52 @@
             <!-- RUTAS -->
             <nav class="navbar flex flex-col flex-1 w-80 mt-2 p-8">
                 <!-- Index -->
-                <a href="{{ route('dashboard') }}" data-menu-id="dashboard" class="pt-2 pb-2 mr-14 rounded-lg hover:bg-blue-800 ">
+                <a href="{{ route('dashboard') }}" data-menu-id="dashboard" class="link pt-2 pb-2 mr-14 rounded-lg hover:bg-blue-800 ">
                     <i class="fi-sr-home text-2xl pl-2 pr-2"></i>
-                    <span class="text-xl">Inicio</span>
+                    <span class="text-xl">{{ __('Inicio') }}</span>
                 </a>
+
                 <!-- Archivos -->
-                <a href="{{ route('files.index') }}" id="files_nav"
-                    class="pt-2 pb-2 mr-8 p-2 mt-2 rounded-lg hover:bg-blue-800">
+                @can('viewAny', App\Models\File::class)
+                <a href="{{ route('files.index') }}" data-menu-id="files" class="link pt-2 pb-2 mr-8 p-2 mt-2 rounded-lg hover:bg-blue-800">
                     <i class="fi-sr-file-image text-2xl pr-2"></i>
-                    <span class="text-xl">Archivos</span>
+                    <span class="text-xl">{{ __('Files') }}</span>
                 </a>
+                @endcan
+
                 <!-- Publicaciones -->
                 @can('viewAny', App\Models\Post::class)
-                <a href="{{ route('posts.index') }}" data-menu-id="posts" class="pt-2 pb-2 mr-4 p-2 mt-2 rounded-lg  hover:bg-blue-800">
+                <a href="{{ route('posts.index') }}" data-menu-id="posts" class="link pt-2 pb-2 mr-4 p-2 mt-2 rounded-lg  hover:bg-blue-800">
                     <i class="fi-sr-images text-2xl pr-2"></i>
-                    <span class="text-xl">Publicaciones</span>
+                    <span class="text-xl">{{ __('Posts') }}</span>
                 </a>
                 @endcan
-                @can('viewAny', App\Models\Place::class)
-                <!-- Lugares -->
-                <a href="{{ route('places.index') }}" data-menu-id="places" class="pt-2 pb-2 mr-8 p-2 mt-2 rounded-lg hover:bg-blue-800">
-                    <i class="fi-sr-map-marker text-2xl pr-2"></i>
-                    <span class="text-xl">Lugares</span>
-                </a>
-                @endcan
-                <!-- Cuenta -->
-                <a href="{{ route('profile.update') }}" data-menu-id="account" class="pt-2 pb-2 mr-14 p-2 mt-2 rounded-lg hover:bg-blue-800">
-                    <i class="fi-sr-circle-user text-xl pr-2"></i>
-                    <span class="text-xl">Cuenta</span>
-                </a>
-            </nav>
-            <!-- IDIOMA -->
 
+                <!-- Lugares -->
+                @can('viewAny', App\Models\Place::class)
+                <a href="{{ route('places.index') }}" data-menu-id="places" class="link pt-2 pb-2 mr-8 p-2 mt-2 rounded-lg hover:bg-blue-800">
+                    <i class="fi-sr-map-marker text-2xl pr-2"></i>
+                    <span class="text-xl">{{ __('Places') }}</span>
+                </a>
+                @endcan
+
+                <!-- Administracion -->
+                @can('viewAny', App\Models\File::class)
+                <a href="{{ url('admin') }}" class="pt-2 pb-2 mr-14 p-2 mt-2 rounded-lg hover:bg-blue-800">
+                    <i class="fi-sr-user-crown text-xl pr-2"></i>
+                    <span class="text-xl">{{ __('Administración') }}</span>
+                </a>
+                @endcan
+
+                <!-- Cuenta -->
+                <a href="{{ route('profile.update') }}" data-menu-id="account" class="link pt-2 pb-2 mr-14 p-2 mt-2 rounded-lg hover:bg-blue-800">
+                    <i class="fi-sr-circle-user text-xl pr-2"></i>
+                    <span class="text-xl">{{ __('Cuenta') }}</span>
+                </a>
+
+                <!-- IDIOMA -->
+
+            </nav>
         </div>
     </div>
 </div>
@@ -52,42 +66,104 @@
 <!-- MOVIL / TABLET -->
 <div class="w-full lg:hidden">
     <div class="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-customblue rounded-tl-lg rounded-tr-lg bottom-0 left-1/2">
-        <nav class="navbar grid h-full max-w-lg mx-auto grid-cols-4 ">
+        <nav class="navbar flex h-full max-w-lg mx-auto">
             <!-- Index -->
-            <a href="{{ route('dashboard') }}" data-menu-id="dashboard" class="inline-flex flex-col items-center justify-center px-5 rounded-tl-lg group hover:bg-blue-800">
-                <i class="text-xl text-white fi-sr-home"></i>
-                <span class="text-xs text-white">Inicio</span>
+            <a href="{{ route('dashboard') }}" data-menu-id="dashboard" class="link flex-1 justify-center grid place-items-center py-3 rounded-tl-lg hover:bg-blue-800">
+                <i class="fi-sr-home text-xl text-white  mb-1"></i>
+                <span class="text-xs text-white">{{ __('Inicio') }}</span>
             </a>
 
             <!-- Archivos -->
             @can('viewAny', App\Models\File::class)
-                <a href="{{ route('files.index') }}" data-menu-id="files" class="inline-flex flex-col items-center justify-center px-5 group hover:bg-blue-800">
-                    <i class="fi-sr-file-image text-xl text-white"></i>
-                    <span class="text-xs text-white">Archivos</span>
-                </a>
+            <a href="{{ route('files.index') }}" data-menu-id="files" class="link flex-1 justify-center grid place-items-center py-3 hover:bg-blue-800">
+                <i class="fi-sr-file-image text-xl text-white mb-1"></i>
+                <span class="text-xs text-white">{{ __('Files') }}</span>
+            </a>
             @endcan
 
             <!-- Publicaciones -->
             @can('viewAny', App\Models\Post::class)
-                <a href="{{ route('posts.index') }}" data-menu-id="posts" class="inline-flex flex-col items-center justify-center px-5 group hover:bg-blue-800">
-                    <i class="fi-sr-images text-xl text-white"></i>
-                    <span class="text-xs text-white">Publicaciones</span>
-                </a>
+            <a href="{{ route('posts.index') }}" data-menu-id="posts" class="link flex-1 justify-center grid place-items-center py-3 hover:bg-blue-800">
+                <i class="fi-sr-images text-xl text-white mb-1"></i>
+                <span class="text-xs text-white">{{ __('Posts') }}</span>
+            </a>
             @endcan
 
             <!-- Lugares -->
             @can('viewAny', App\Models\Place::class)
-                <a href="{{ route('places.index') }}" data-menu-id="places" class="inline-flex flex-col items-center justify-center px-5 group hover:bg-blue-800">
-                    <i class="fi-sr-map-marker text-xl text-white"></i>
-                    <span class="text-xs text-white">Lugares</span>
+            <a href="{{ route('places.index') }}" data-menu-id="places" class="link flex-1 justify-center grid place-items-center py-3 hover:bg-blue-800">
+                <i class="fi-sr-map-marker text-xl text-white mb-1"></i>
+                <span class="text-xs text-white">{{ __('Places') }}</span>
+            </a>
+            @endcan
+
+            <!-- Administracion -->
+            @can('viewAny', App\Models\File::class)
+                <a href="{{ url('admin') }}" class="flex-1 justify-center grid place-items-center py-3 hover:bg-blue-800">
+                    <i class="fi-sr-user-crown text-xl text-white mb-1"></i>
+                    <span class="text-xs text-white">{{ __('Administración') }}</span>
                 </a>
             @endcan
 
             <!-- Cuenta -->
-            <a href="{{ route('profile.update') }}" data-menu-id="account" class="inline-flex flex-col items-center justify-center px-5 group rounded-tr-lg hover:bg-blue-800">
-                <i class="fi-sr-circle-user text-xl text-white"></i>
-                <span class="text-xs text-white">Cuenta</span>
+            <a href="{{ route('profile.update') }}" data-menu-id="account" class="link flex-1 justify-center grid place-items-center py-3 rounded-tr-lg hover:bg-blue-800">
+                <i class="fi-sr-circle-user text-xl text-white mb-1"></i>
+                <span class="text-xs text-white">{{ __('Cuenta') }}</span>
             </a>
         </nav>
     </div>
 </div>
+
+<script>
+    // MENU PC / TABLET / MOVIL
+    let colorSeleccionado = null;
+
+    function aplicarEstilos(id) {
+        document.querySelectorAll('.navbar .link').forEach(function(el) {
+            el.classList.remove('pl-10');
+            el.classList.remove('bg-blue-800');
+        });
+
+        let primerMenu = document.querySelector('.navbar .link');
+
+        if (primerMenu) {
+            primerMenu.classList.remove('pl-10');
+        }
+        
+        document.querySelectorAll('.navbar .link[data-menu-id="' + id + '"]').forEach(function(el, index) {
+            if (index === 0) {
+                el.classList.add('pl-10');
+            }
+            el.classList.add('bg-blue-800');
+        });
+    }
+
+    document.querySelectorAll('.navbar .link').forEach(function(link) {
+        link.addEventListener('click', function() {
+            colorSeleccionado = this.dataset.menuId;
+            aplicarEstilos(colorSeleccionado);
+            guardarColorEnLocalStorage(colorSeleccionado);
+        });
+    });
+
+    window.onload = function() {
+        colorSeleccionado = localStorage.getItem('ColorDerecha');
+        if (colorSeleccionado) {
+            document.querySelectorAll('.navbar .link').forEach(function(el) {
+                el.classList.remove('pl-10');
+                el.classList.remove('bg-blue-800');
+            });
+            document.querySelectorAll('.navbar .link[data-menu-id="' + colorSeleccionado + '"]').forEach(function(el, index) {
+                if (index === 0) {
+                    el.classList.add('pl-10');
+                }
+                el.classList.add('bg-blue-800');
+            });
+        }
+    };
+
+    function guardarColorEnLocalStorage(color) {
+        localStorage.setItem('ColorDerecha', color);
+    }
+
+</script>

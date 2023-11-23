@@ -14,7 +14,7 @@
                 <!-- Correo electronico -->
                 <div class="rounded-lg">
                     <div class="relative bg-inherit">
-                        <input type="email" id="email" name="email" autocomplete="email" placeholder="Correo electrónico" class="peer w-full h-10 rounded-lg placeholder-transparent text-black ring-1 focus:outline-none dark:bg-gray-800 dark:text-white @error('email') ring-red-500 @enderror" />
+                        <input type="email" id="email" name="email" autocomplete="email" placeholder="Correo electrónico" class=" peer w-full h-10 rounded-lg placeholder-transparent text-black ring-1 focus:outline-none dark:bg-gray-800 dark:text-white @error('email') ring-red-500 @enderror" />
                         <label for="email" class="absolute cursor-text left-0 -top-3 bg-white rounded-lg mx-2 px-1 text-sm pointer-events-none peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-3 peer-focus:text-sm transition-all peer-focus:bg-customblue peer-focus:text-white peer-focus:rounded-lg dark:bg-gray-800 dark:text-white">Correo electrónico</label>
                     </div>
                     @error('email')
@@ -39,27 +39,27 @@
                     <div class="block mt-4">
                         <label for="remember_me" class="inline-flex items-center">
                             <input id="remember_me" type="checkbox" class="rounded dark:border-gray-500 text-customblue shadow-sm focus:ring-customblue" name="remember">
-                            <span class="ml-2 text-sm text-black dark:text-white">{{ __('Recuérdame') }}</span>
+                            <span class="ml-2 text-sm text-black dark:text-white">{{ __('Remember me') }}</span>
                         </label>
                     </div>
 
                     <!-- Restablecer la contraseña -->
                     <div class="flex items-center mt-4">
                         @if (Route::has('password.request'))
-                        <a class="underline text-sm text-black dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:text-blue-500 dark:text-white dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">{{ __('¿Has olvidado la contraseña?') }}</a>
+                        <a class="underline text-sm text-black dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:text-blue-500 dark:text-white dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</a>
                         @endif
                     </div>
                 </div>
 
                 <!-- Iniciar sesión -->
                 <div>
-                    <button type="submit" class="flex w-full mb-5 mx-auto justify-center rounded-md bg-customblue px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm lg:w-40 hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Iniciar sesión</button>
+                    <button type="submit" class="flex w-full mb-5 mx-auto justify-center rounded-md bg-customblue px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm lg:w-40 hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">{{ __('Log in') }}</button>
                 </div>
             </form>
 
             <!-- Registrar-se -->
             <div>
-                <a href="{{ route('register') }}" class="flex w-full justify-center text-sm font-bold leading-6 text-customblue hover:text-blue-800 dark:text-white">Registrar-se</a>
+                <a href="{{ route('register') }}" class="flex w-full justify-center text-sm font-bold leading-6 text-customblue hover:text-blue-800 dark:text-white">{{ __('Already registered?') }}</a>
             </div>
         </div>
     </div>

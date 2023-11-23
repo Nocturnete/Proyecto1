@@ -4,17 +4,17 @@ Before you begin, ensure that you have [Composer](https://getcomposer.org/) inst
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/your_username/your_project.git
+    git clone https://github.com/Nocturnete/Proyecto1.git
     ```
 
 2. **Navigate to the project directory:**
     ```bash
-    cd your_project
+    cd Proyecto1
     ```
 
 3. **Install PHP dependencies:**
     ```bash
-    composer install
+    ../composer install
     ```
 
 4. **Install JavaScript dependencies:**
@@ -27,26 +27,10 @@ Before you begin, ensure that you have [Composer](https://getcomposer.org/) inst
     cp .env.example .env
     ```
 
-6. **Generate the application key:**
+6. **Start the Development Server**
     ```bash
-    php artisan key:generate
+    php artisan serve
     ```
-
-7. **Run migrations and seed the database:**
     ```bash
-    php artisan migrate
-    php artisan db:seed
+    npm run dev
     ```
-
-8. **Set permissions to view storage disk settings:**
-    ```bash
-    php artisan storage:link
-    ```
-
-# Start the Development Server
-
-```bash
-php artisan serve
-npm run dev
-
-favoritos
