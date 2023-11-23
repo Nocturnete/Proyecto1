@@ -47,20 +47,23 @@
                                     </div>
                                     <!-- FAVORITOS -->
                                     <div class="flex items-center">
-                                        @if(auth()->check() && auth()->user()->favorites->contains($place->id))
-                                        <form action="{{ route('places.unfavorites', ['place' => $place->id]) }}" method="POST" class="flex items-center">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="ml-8 pt-2"><i class="fi-sr-star ml-3 text-yellow-500 text-2xl"></i></button>
-                                        </form>
-                                        @else
-                                        <form action="{{ route('places.favorites', ['place' => $place->id]) }}" method="POST" class="flex items-center">
-                                            @csrf
-                                            <button class="ml-8 pt-2"><i class="fi-sr-star ml-3 text-2xl"></i></button>
-                                        </form>
-                                        @endif
+                                        @can('create', App\Models\Place::class)
+                                            @if(auth()->check() && auth()->user()->favorites->contains($place->id))
+                                            <form action="{{ route('places.unfavorites', ['place' => $place->id]) }}" method="POST" class="flex items-center">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="ml-8 pt-2"><i class="fi-sr-star ml-3 text-yellow-500 text-2xl"></i></button>
+                                            </form>
+                                            @else
+                                                <form action="{{ route('places.favorites', ['place' => $place->id]) }}" method="POST" class="flex items-center">
+                                                    @csrf
+                                                    <button class="ml-8 pt-2"><i class="fi-sr-star ml-3 text-2xl"></i></button>
+                                                </form>
+                                            @endif
+                                        @endcan
                                         <p class="pt-1 text-gray-600 font-bold text-sm ml-2 dark:text-white">
-                                            {{ $place->favorited()->count() }}</p>
+                                            {{ $place->favorited()->count() }}
+                                        </p>
                                     </div>
                                 </div>
                                 <!-- DESCRIPCION -->

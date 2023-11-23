@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Place;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
@@ -7,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,12 +53,14 @@ Route::get('places.search', 'App\Http\Controllers\PlaceController@search')->name
 Route::get('posts.search', 'App\Http\Controllers\PostController@search')->name('posts.search');
 
 // FAVORITOS
-Route::post('/places/{place}/favorites', 'App\Http\Controllers\PlaceController@favorite')->name('places.favorites');
+Route::post('/places/{place}/favorites', 'App\Http\Controllers\PlaceController@favorite')
+    ->name('places.favorites')
+    ->middleware('can:create,place');
+
 Route::delete('/places/{place}/favorites', 'App\Http\Controllers\PlaceController@unfavorite')->name('places.unfavorites');
 
 // ME GUSTA
 Route::post('/posts/{post}/likes', 'App\Http\Controllers\PostController@like')->name('posts.likes');
 Route::delete('/posts/{post}/likes', 'App\Http\Controllers\PostController@unlike')->name('posts.unlike');
-
 
 require __DIR__.'/auth.php';

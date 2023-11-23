@@ -89,4 +89,5 @@ class PlacePolicy
     {
         return $user->role_id === 3;
     }
+
 }
