@@ -16,7 +16,7 @@
     </x-slot>
 
     <div class="bg-white p-8 rounded shadow-md">
-        <h1 class="text-2xl font-semibold mb-4">{{ __('Editar Archivo') }}   </h1>
+        <h1 class="text-2xl font-semibold mb-4">{{ __('Editar Archivo') }}</h1>
         <form action="{{ route('files.update', $file->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')

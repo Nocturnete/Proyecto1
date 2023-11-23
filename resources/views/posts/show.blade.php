@@ -10,7 +10,7 @@
 
 <x-app-layout>
     <div class="bg-white p-8 rounded shadow-md">
-        <h1 class="text-2xl font-semibold mb-4">__('Detalles')</h1>
+        <h1 class="text-2xl font-semibold mb-4">{{__('Detalles')}}</h1>
         <p class="text-lg font-semibold mb-2">{!! $post->title !!}</p>
         <p class="text-gray-600 mb-4">{!! $post->description !!}</p>
         <img src="{{ asset('storage/' . $post->file->filepath) }}" alt="Image" class="w-50 h-50 mb-4">

@@ -53,7 +53,7 @@
     "Log in": "Se connecter",
     "Log Out": "Se déconnecter",
     "Login": "Connexion",
-    "Logout": "Déconnexion",
+    "Logout": "Se déconnecter",
     "Loop Detected": "Boucle détectée",
     "Maintenance Mode": "Mode de Maintenance",
     "Method Not Allowed": "Méthode Non Autorisée",
@@ -190,5 +190,9 @@
     "Administración": "Administration",
     "Cuenta": "Compte",
     "Places": "Lieux",
-    "Posts": "Publications"
+    "Posts": "Publications",
+    "Nombre": "Nom",
+    "Correo electrónico": "Adresse e-mail",
+    "Contraseña": "Mot de passe",
+    "Confirma contraseña": "Confirmer le mot de passe"
 }

@@ -30,7 +30,7 @@
                     class="flex items-center p-3 ml-5 mb-8 space-x-2 rounded-lg px-3 py-2 text-white bg-red-600 cursor-pointer hover:bg-red-500 shadow"
                     onclick="event.preventDefault(); this.closest('form').submit();">
                     <i class="fi-sr-exit mt-1"></i>
-                    <span class="font-bold">Logout</span>
+                    <span class="font-bold">{{__('Logout')}}</span>
                 </button>
             </form>
         </div>

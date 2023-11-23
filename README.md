@@ -17,19 +17,14 @@ Before you begin, ensure that you have [Composer](https://getcomposer.org/) inst
     ../composer install
     ```
 
-4. **Install JavaScript dependencies:**
-    ```bash
-    npm install
-    ```
-
-5. **Copy the configuration file and customize settings (e.g., database) in .env:**
+4. **Copy the configuration file and customize settings (e.g., database) in .env:**
     ```bash
     cp .env.example .env
     ```
 
-6. **Start the Development Server**
+5. **Start the Development Server**
     ```bash
-    php artisan serve
+    php artisan serv
     ```
     ```bash
     npm run dev

@@ -8,7 +8,6 @@
 
             <form class="space-y-6" action="{{ route('register') }}" method="POST">
                 @csrf
-
                 <!-- Nombre -->
                 <div class="rounded-lg">
                     <div class="relative bg-inherit">
@@ -19,7 +18,6 @@
                     <p class="mt-2 text-red-500 text-sm">{{ $message }}</p>
                     @enderror
                 </div>
-
                 <!-- Correo electronico -->
                 <div class="rounded-lg">
                     <div class="relative bg-inherit">
@@ -30,7 +28,6 @@
                     <p class="mt-2 text-red-500 text-sm">{{ $message }}</p>
                     @enderror
                 </div>
-
                 <!-- Contraseña -->
                 <div class="rounded-lg">
                     <div class="relative bg-inherit">
@@ -41,7 +38,6 @@
                     <p class="mt-2 text-red-500 text-sm">{{ $message }}</p>
                     @enderror
                 </div>
-
                 <!-- Confirmar Contraseña -->
                 <div class="rounded-lg">
                     <div class="relative bg-inherit">
@@ -52,13 +48,11 @@
                     <p class="mt-2 text-red-500 text-sm">{{ $message }}</p>
                     @enderror
                 </div>
-
                 <!-- Registrar-se -->
                 <div>
                     <button type="submit" class="flex w-full mb-5 mx-auto justify-center rounded-md bg-customblue px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm lg:w-40 hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">{{ __('Register') }}</button>
                 </div>
             </form>
-
             <!-- Iniciar sesión -->
             <div>
                 <a href="{{ route('login') }}" class="flex w-full justify-center text-sm font-bold leading-6 text-customblue hover:text-blue-800 dark:text-white">{{ __('Already registered?') }}</a>

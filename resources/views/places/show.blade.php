@@ -28,5 +28,6 @@
             <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded mr-2">{{ __('Eliminar') }}</button>
         </form>
         @endcan
-        <a href="{{ route('places.index') }}" class="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded">{{ __('Volver') }}</a>    </div>
+        <a href="{{ route('places.index') }}" class="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded">{{ __('Volver') }}</a>
+    </div>
 </x-app-layout>

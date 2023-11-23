@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Styles and scripts -->
+    <!-- Styles, Scripts and Icons-->
     @env(['local','development'])
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endenv
@@ -21,7 +21,7 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 
-    <!-- Titulo pestaña -->
+    <!-- Titulo -->
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 
@@ -44,7 +44,7 @@
                 </div>
                 {{ $slot }}
             </main>
-            <!-- PANTALLA TABLET Y MOVIL -->
+            <!-- PANTALLA TABLET / MOVIL -->
             <main class="sm:block md:block lg:hidden">
                 @if (isset($header))
                 <header>

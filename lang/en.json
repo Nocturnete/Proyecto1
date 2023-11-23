@@ -190,5 +190,9 @@
     "Administración": "Administration",
     "Cuenta": "Account",
     "Places": "Places",
-    "Posts": "Posts"
+    "Posts": "Posts",
+    "Nombre": "Name",
+    "Correo electrónico": "E-mail",
+    "Contraseña": "Password",
+    "Confirma contraseña": "Confirm Password"
 }
