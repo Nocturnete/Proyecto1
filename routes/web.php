@@ -25,7 +25,7 @@ Route::get('/', function (Request $request) {
     $message = 'Loading welcome page';
     Log::info($message);
     $request->session()->flash('info', $message);
-    return view('welcome');
+    return redirect('/dashboard');
 });
 
 Route::get('/dashboard', function () {
