@@ -17,8 +17,8 @@ export default {
             colors: {
                 customred: '#FC5A1E',
                 customblue: '#0080F0',
-                customblack: '#000000',
-                customgray: '#424242',
+                customblack: '#2C2C2C',
+                customgray: '#393838',
                 customgray2: '#8C8C8C',
                 customgray3: '#D1D1D1',
                 customyellow: '#FFFF00',

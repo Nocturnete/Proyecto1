@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "watch": "vite build --watch"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
@@ -16,6 +17,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "@flaticon/flaticon-uicons": "^3.0.0"
+        "@flaticon/flaticon-uicons": "^3.0.0",
+        "flag-icons": "^7.0.2"
     }
 }

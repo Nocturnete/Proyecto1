@@ -63,7 +63,6 @@ Route::delete('/places/{place}/favorites', 'App\Http\Controllers\PlaceController
 // MULTI-LENGUAJE
 Route::get('/language/{locale}', [LanguageController::class, 'language'])->name('language');
 
-
 // ME GUSTA
 Route::post('/posts/{post}/likes', 'App\Http\Controllers\PostController@like')->name('posts.likes');
 Route::delete('/posts/{post}/likes', 'App\Http\Controllers\PostController@unlike')->name('posts.unlike');

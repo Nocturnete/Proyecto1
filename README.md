@@ -26,6 +26,7 @@ Before you begin, ensure that you have [Composer](https://getcomposer.org/) inst
     ```bash
     php artisan serv
     ```
+    
     ```bash
     npm run dev
     ```

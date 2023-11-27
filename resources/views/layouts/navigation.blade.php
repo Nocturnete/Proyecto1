@@ -55,10 +55,12 @@
                     <i class="fi-sr-circle-user text-xl pr-2"></i>
                     <span class="text-xl">{{ __('Cuenta') }}</span>
                 </a>
-
-                <!-- IDIOMA -->
-                <x-language-switcher />
+ 
             </nav>
+            <!-- IDIOMA -->
+            <div class="bottom-0">
+                <x-language-switcher />
+            </div>
         </div>
     </div>
 </div>

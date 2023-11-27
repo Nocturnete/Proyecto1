@@ -20,12 +20,13 @@
     @endenv
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    
 
     <!-- Titulo -->
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 
-<body class="bg-white h-full dark:bg-customgray">
+<body class="bg-white h-full dark:bg-customblack">
     <div class="min-h-screen">
         @include('layouts.navigation')
         <div class="flex-1 p-4">

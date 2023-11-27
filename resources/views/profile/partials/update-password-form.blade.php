@@ -3,10 +3,6 @@
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
             {{ __('Update Password') }}
         </h2>
-
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __('Ensure your account is using a long, random password to stay secure.') }}
-        </p>
     </header>
 
     <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
@@ -31,9 +27,11 @@
             <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+        
 
+        <button class="flex items-center p-2 space-x-2 rounded-lg px-3 py-2 text-white bg-customblue cursor-pointer hover:bg-blue-800">
+            <span class="font-bold">{{ __('Save') }}</span>
+        </button>
             @if (session('status') === 'password-updated')
                 <p
                     x-data="{ show: true }"

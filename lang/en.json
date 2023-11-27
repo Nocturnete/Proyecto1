@@ -194,5 +194,8 @@
     "Nombre": "Name",
     "Correo electrónico": "E-mail",
     "Contraseña": "Password",
-    "Confirma contraseña": "Confirm Password"
+    "Confirma contraseña": "Confirm Password",
+    "Subir Publicación": "Upload Publication",
+    "Vista Previa de la Imagen": "Image Preview",
+    "Volver a publicaciones": "Back to Publications"
 }

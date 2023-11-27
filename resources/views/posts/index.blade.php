@@ -11,8 +11,7 @@
             <div class="lg:flex lg:justify-center">
                 <form class="flex items-center mb-8" action="{{ route('posts.search') }}" method="GET">
                     <div class="relative w-full lg:w-96">
-                        <input type="search" name="search" placeholder="Buscar"
-                            class="bg-gray-200 h-10 px-5 pr-10 rounded-full text-sm focus:outline-none w-full">
+                        <input type="search" name="search" placeholder="{{ __('Buscar') }}" class="bg-gray-200 h-10 px-5 pr-10 rounded-full text-sm focus:outline-none w-full">
                         <button type="submit" class="absolute inset-y-0 right-0 px-3 py-2">
                             <i class="fi-rr-search dark:text-black"></i>
                         </button>
