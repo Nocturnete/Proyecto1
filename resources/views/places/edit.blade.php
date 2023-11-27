@@ -42,7 +42,7 @@
                             <label for="visibility_id" class="block text-gray-700 font-bold">{{ __('Visibilidad') }}:</label>
                             <select id="visibility_id" name="visibility_id" class="w-full p-2 border rounded-md">
                                 @foreach($visibilities as $visibility)
-                                    <option value="{{ $visibility->id }}" @if($post->visibility_id == $visibility->id) selected @endif>{{ $visibility->name }}</option>
+                                    <option value="{{ $visibility->id }}" @if($place->visibility_id == $visibility->id) selected @endif>{{ $visibility->name }}</option>
                                 @endforeach
                             </select>
                         </div>

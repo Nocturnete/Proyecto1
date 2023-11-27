@@ -73,7 +73,7 @@
                                 </p>
                                 <div class="flex space-x-2">
                                 <p class="text-gray-600 dark:text-gray-400">Visibilidad:
-                                    {{ $post->visibility->name }}
+                                    {{ $place->visibility->name }}
                                 </p>
                             </div>
                             </div>

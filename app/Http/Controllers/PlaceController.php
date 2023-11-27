@@ -44,7 +44,7 @@ class PlaceController extends Controller
     public function create()
     {
         $visibilities = Visibility::all();
-        return view("places.create");
+        return view("places.create", compact('visibilities'));
     }
 
     /**
@@ -107,6 +107,7 @@ class PlaceController extends Controller
                 'descripcion' => $description,
                 'file_id'     => $file->id,
                 'author_id'   => auth()->user()->id,
+                'visibility_id' => $request->visibility_id,
             ]);
 
             return redirect()->route('places.show', $place)
@@ -128,11 +129,8 @@ class PlaceController extends Controller
      */
     public function show(Place $place)
     {
-        return view("places.show", [
-            'place'  => $place,
-            'file'   => $place->file,
-            'author' => $place->user,
-        ]);
+        return view("places.show", compact('place'));
+
     }
 
     /**
@@ -142,11 +140,9 @@ class PlaceController extends Controller
      */
     public function edit(Place $place)
     {
-        return view("places.edit", [
-            'place'  => $place,
-            'file'   => $place->file,
-            'author' => $place->user,
-        ]);
+        $visibilities = Visibility::all();
+
+        return view("places.edit", compact('visibilities', 'place'));
     }
 
     /**
@@ -188,6 +184,8 @@ class PlaceController extends Controller
             'longitude'   => $request->longitude,
             'descripcion' => $request->descripcion,
             'file_id'     => $place->file->id,
+            'visibility_id' => $request->visibility_id, 
+
         ]);
         return redirect()->route('places.show', $place)->with('success', 'File successfully saved');
     }
