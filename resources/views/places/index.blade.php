@@ -79,6 +79,7 @@
                             </div>
                         </div>
                     </a>
+                    @endif
                     @endforeach
                     {{ $places->links() }}
                 </div>
