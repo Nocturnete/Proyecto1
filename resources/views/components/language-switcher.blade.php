@@ -25,3 +25,6 @@
         </x-slot>
     </x-dropdown>
 </div>
+<script>
+   const currentLocale = {{ Js::from($currentLocale) }};
+</script>
