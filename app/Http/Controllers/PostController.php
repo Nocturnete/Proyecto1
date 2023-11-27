@@ -139,7 +139,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', compact('post'));
+        $visibilities = Visibility::all();
+        return view('posts.edit', compact('visibilities', 'post'));
     }
 
     /**
