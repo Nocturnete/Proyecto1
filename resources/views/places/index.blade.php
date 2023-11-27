@@ -31,6 +31,7 @@
             <div class="w-full mx-auto h-full border-3 border-red-500">
                 <div class="w-full mx-auto h-full flex flex-col">
                     @foreach ($places as $place)
+                    @if ($place->visibility_id != 3 || (auth()->check() && auth()->user()->id === $place->author_id))
                     <a href="{{ route('places.show', $place->id) }}">
                         <div class="relative flex flex-col mb-3 mt-3 bg-gray-200 space-y-3 rounded-2xl shadow-lg p-3 w-full mx-auto h-full lg:transform lg:transition lg:duration-500 lg:hover:scale-105 lg:hover:shadow-2xl lg:max-w-6xl lg:w-full md:space-y-3 md:space-x-0 md:flex-row dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <!-- IMAGEN -->
@@ -70,6 +71,11 @@
                                 <p class="text-gray-500 text-lg md:text-lg lg:text-xl dark:text-white">
                                     {!! $place->description !!}
                                 </p>
+                                <div class="flex space-x-2">
+                                <p class="text-gray-600 dark:text-gray-400">Visibilidad:
+                                    {{ $post->visibility->name }}
+                                </p>
+                            </div>
                             </div>
                         </div>
                     </a>

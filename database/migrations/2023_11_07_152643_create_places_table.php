@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('descripcion',255); 
             $table->integer('file_id');
             $table->integer('author_id');
+            $table->unsignedBigInteger('visibility_id');
             $table->timestamps();
+            $table->foreign('visibility_id')->references('id')->on('visibilities');
         });
     }
 

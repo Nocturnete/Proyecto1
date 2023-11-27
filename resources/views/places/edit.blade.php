@@ -39,6 +39,14 @@
                             <textarea name="descripcion" id="descripcion" class="w-full p-2 border rounded-md" rows="4">{{ $place->descripcion }}</textarea>
                         </div>
                         <div class="mb-4">
+                            <label for="visibility_id" class="block text-gray-700 font-bold">{{ __('Visibilidad') }}:</label>
+                            <select id="visibility_id" name="visibility_id" class="w-full p-2 border rounded-md">
+                                @foreach($visibilities as $visibility)
+                                    <option value="{{ $visibility->id }}" @if($post->visibility_id == $visibility->id) selected @endif>{{ $visibility->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-4">
                             <label for="imagen" class="block text-gray-700 font-bold">{{ __('Imagen actual') }}:</label>
                             <img src="{{ asset('storage/' . $place->file->filepath) }}" alt="Image" class="w-200 mb-4">
                         </div>

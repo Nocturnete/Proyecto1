@@ -7,6 +7,7 @@ use App\Models\File;
 use App\Models\User;
 use App\Models\Favorite;
 use Illuminate\Http\Request;
+use App\Models\Visibility; 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\FileController;
@@ -31,7 +32,7 @@ class PlaceController extends Controller
     public function index()
     {
         return view("places.index", [
-            "places" => Place::paginate(5),
+            "places" => Place::with('visibility')->paginate(5),
         ]);
     }
 
@@ -42,6 +43,7 @@ class PlaceController extends Controller
      */
     public function create()
     {
+        $visibilities = Visibility::all();
         return view("places.create");
     }
 
@@ -59,6 +61,7 @@ class PlaceController extends Controller
             'longitude'   => 'required|max:9',
             'descripcion' => 'required|max:200',
             'upload'      => 'required|mimes:gif,jpeg,jpg,png|max:1024',
+            'visibility_id' => 'required|exists:visibilities,id', 
         ]);
 
         // Obtención de los datos del formulario.
@@ -160,6 +163,7 @@ class PlaceController extends Controller
             'longitude'   => 'required|max:9',
             'descripcion' => 'required|max:200',
             'upload'      => 'required|mimes:gif,jpeg,jpg,png|max:1024',
+            'visibility_id' => 'required|exists:visibilities,id', 
         ]);
 
         // Actualización del archivo y detalles del lugar en la base de datos.

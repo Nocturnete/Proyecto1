@@ -29,7 +29,7 @@ class PostController extends Controller
         //     "posts" => Post::paginate(5),
         // ]);
         return view("posts.index", [
-            "posts" => Post::with('visibility')->paginate(5), // Incloure la relació amb visibilitat
+            "posts" => Post::with('visibility')->paginate(5), 
         ]);
     }
 

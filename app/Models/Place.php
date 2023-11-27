@@ -21,6 +21,7 @@ class Place extends Model
         'descripcion',
         'file_id',
         'author_id',
+        'visibility_id',
     ];
 
     /**
@@ -51,5 +52,10 @@ class Place extends Model
     public function favorited()
     {
         return $this->belongsToMany(User::class, 'favorites');
+    }
+    
+    public function visibility()
+    {
+        return $this->belongsTo(Visibility::class);
     }
 }
