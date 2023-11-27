@@ -19,7 +19,7 @@
                 </form>
             </div>
 
-            <!-- CREAR LUGAR -->
+            <!-- CREAR PUBLICACION -->
             <div class="lg:m-6 flex items-center justify-center">
                 <a href="{{ route('posts.create') }}">
                     <i class="fi-sr-add text-customblue text-4xl"></i>
@@ -32,6 +32,7 @@
                 <div class="w-full mx-auto h-full p-2 flex justify-center mt-5 overflow-y-hidden">
                     <div class="md:max-w-lg lg:max-w-xl container ">
                         @foreach ($posts as $post)
+                        @if ($post->visibility_id != 3 || (auth()->check() && auth()->user()->id === $post->author_id))
                         <a href="{{ route('posts.show', $post->id) }}">
                             <div class="mb-6 mt-2 p-3 bg-gray-200 rounded-2xl lg:transform lg:transition lg:duration-500 lg:hover:scale-105 lg:hover:shadow-2xl dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <div class="flex p-2 justify-between">
@@ -83,6 +84,7 @@
                                 </div>
                             </div>
                         </a>
+                        @endif
                         @endforeach
                         {{ $posts->links() }}
                     </div>
