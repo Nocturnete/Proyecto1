@@ -59,6 +59,7 @@
                                     @endcan
                                     <p>{{ $post->liked()->count() }}</p>
                                     </div>
+
                                 </div>
 
                                 <!-- IMAGEN -->
@@ -73,6 +74,12 @@
                                     <div>
                                         {!! $post->description !!}
                                     </div>
+                                </div>
+                                <!-- VISIBILIDAD -->
+                                <div class="flex space-x-2">
+                                    <p class="text-gray-600 dark:text-gray-400">Visibilidad:
+                                        {{ $post->visibility->name }}
+                                    </p>
                                 </div>
                             </div>
                         </a>

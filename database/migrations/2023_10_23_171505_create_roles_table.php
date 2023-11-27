@@ -37,6 +37,6 @@ return new class extends Migration
         Artisan::call('db:seed', [
             '--class' => 'RoleSeeder',
             '--force' => true
-         ]);
+        ]);
     }
 };

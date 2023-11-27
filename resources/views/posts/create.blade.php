@@ -21,6 +21,14 @@
                     <label for="description" class="block text-gray-700 font-bold dark:text-white ">{{ __('Descripcion') }}:</label>
                     <textarea id="description" name="description" class="w-full p-2 border rounded-md dark:bg-gray-500 dark:text-white" rows="4"></textarea>
                 </div>
+                <div class="mb-4">
+                    <label for="visibility_id" class="block text-gray-700 font-bold">{{ __('Visibilidad') }}:</label>
+                    <select id="visibility_id" name="visibility_id" class="w-full p-2 border rounded-md">
+                        @foreach($visibilities as $visibility)
+                            <option value="{{ $visibility->id }}">{{ $visibility->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <!-- IMAGEN -->
                 <div class="mb-4">
                     <label for="upload" class="block text-gray-700 font-bold dark:text-white ">{{ __('Imagen') }}:</label>

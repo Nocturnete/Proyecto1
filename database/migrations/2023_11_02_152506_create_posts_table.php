@@ -17,7 +17,10 @@ return new class extends Migration
             $table->integer('file_id');
             $table->string('title', 20);
             $table->string('description', 200);
+            $table->unsignedBigInteger('visibility_id');
             $table->timestamps();
+
+            $table->foreign('visibility_id')->references('id')->on('visibilities');
             // $table->id();
             // $table->unsignedBigInteger('author_id')->nullable();
             // $table->foreign('author_id')->references('users_id')->on('users');

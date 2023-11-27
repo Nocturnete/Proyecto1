@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Http\Controllers\FileController;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Like;
+use App\Models\Visibility; 
 
 class PostController extends Controller
 {
@@ -24,8 +25,11 @@ class PostController extends Controller
 
     public function index()
     {
+        // return view("posts.index", [
+        //     "posts" => Post::paginate(5),
+        // ]);
         return view("posts.index", [
-            "posts" => Post::paginate(5),
+            "posts" => Post::with('visibility')->paginate(5), // Incloure la relació amb visibilitat
         ]);
     }
 
@@ -36,7 +40,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("posts.create");
+        $visibilities = Visibility::all();
+        return view("posts.create", compact('visibilities'));
+        // return view("posts.create");
     }
 
     /**
@@ -51,6 +57,7 @@ class PostController extends Controller
             'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024',
             'title' => 'required|max:20',
             'description' => 'required|max:200',
+            'visibility_id' => 'required|exists:visibilities,id', 
         ]);
 
         // Obtención de los datos del formulario.
@@ -90,6 +97,7 @@ class PostController extends Controller
                 'file_id' => $file->id,
                 'title' => $request->title,
                 'description' => $request->description,
+                'visibility_id' => $request->visibility_id, 
             ]);
 
             return redirect()->route('posts.show', $post)
@@ -145,7 +153,8 @@ class PostController extends Controller
         $request->validate([
             'upload' => 'mimes:gif,jpeg,jpg,png|max:1024',
             'title' => 'required|max:20',
-            'description' => 'required|max:200'
+            'description' => 'required|max:200',
+            'visibility_id' => 'required|exists:visibilities,id', 
         ]);
 
         // Si hay un nuevo archivo, eliminar el antiguo y almacenar el nuevo.
@@ -168,6 +177,7 @@ class PostController extends Controller
             'file_id' => $post->file->id,
             'title' => $request->title,
             'description' => $request->description,
+            'visibility_id' => $request->visibility_id, 
         ]);
 
         return redirect()->route('posts.show', $post)->with('success', 'Archivo actualizado con éxito');
