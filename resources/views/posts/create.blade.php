@@ -9,17 +9,24 @@
     <div class="py-5">
         <div class="w-full mx-auto h-full">
             <a href="{{ route('posts.index') }}" class="mt-5"><i class="fi-sr-angle-left mt-4 text-customblue">{{ __('Volver a publicaciones') }}</i></a>
-            <form method="post" action="{{ route('posts.store') }}" enctype="multipart/form-data" class="bg-white mt-5 p-4 rounded-lg dark:bg-gray-700">
+            <form id="validate-post-form" method="post" action="{{ route('posts.store') }}" enctype="multipart/form-data" class="bg-white mt-5 p-4 rounded-lg dark:bg-gray-700">
             @csrf
                 <!-- Titulo -->
                 <div class="mb-4">
                     <label for="title" class="block text-gray-700 font-bold dark:text-white ">{{ __('Titulo') }}:</label>
                     <input type="text" id="title" name="title" class="w-full p-2 border rounded-md dark:bg-gray-500 dark:text-white">
+                    @error('title')
+                        <p id="title-error" class="mt-2 text-red-500 text-sm">{{ $message }}</p>
+                    @enderror
+
                 </div>
                 <!-- Descripcion -->
                 <div class="mb-4">
                     <label for="description" class="block text-gray-700 font-bold dark:text-white ">{{ __('Descripcion') }}:</label>
                     <textarea id="description" name="description" class="w-full p-2 border rounded-md dark:bg-gray-500 dark:text-white" rows="4"></textarea>
+                    @error('description')
+                        <p id="description-error" class="mt-2 text-red-500 text-sm">{{ $message }}</p>
+                    @enderror
                 </div>
                 <!-- Visibilidad -->
                 <div class="mb-4">
@@ -34,6 +41,9 @@
                 <div class="mb-4">
                     <label for="upload" class="block text-gray-700 font-bold dark:text-white ">{{ __('Imagen') }}:</label>
                     <input type="file" id="upload" name="upload" class="w-full p-2 rounded-md dark:text-white">
+                    @error('upload')
+                        <p id="upload-error" class="mt-2 text-red-500 text-sm">{{ $message }}</p>
+                    @enderror
                 </div>
                 <!-- Vista Previa -->
                 <div class="mb-4">

@@ -3,20 +3,26 @@ import Validator from '../validator'
 
 
 // Submit form ONLY when validation is OK
-const form = document.getElementById("create-file-form")
+const form = document.getElementById("validate-post-form")
 
 
 if (form) {
    form.addEventListener("submit", function( event ) {
        // Reset errors messages
        // [...]
+       document.getElementById("title-error").innerText = "";
+       document.getElementById("description-error").innerText = "";
        document.getElementById("upload-error").innerText = "";
        // Get form inputs values
        let data = {
-           "upload": document.getElementsByName("upload")[0].value,
-       }
+        "title": document.getElementsByName("title")[0].value,
+        "description": document.getElementsByName("description")[0].value,
+        "upload": document.getElementsByName("upload")[0].value,
+        };
        let rules = {
-           "upload": "required",
+            "title": "required",
+            "description": "required",
+            "upload": "required",
        }
        // Create validation
        let validation = new Validator(data,rules)
