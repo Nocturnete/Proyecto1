@@ -1,13 +1,3 @@
-@if ($errors->any())
-<div class="alert alert-danger">
-   <ul>
-       @foreach ($errors->all() as $error)
-       <li>{{ $error }}</li>
-       @endforeach
-   </ul>
-</div>
-@endif
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -25,18 +15,30 @@
                         <div class="mb-4">
                             <label for="title" class="block text-gray-700 font-bold">{{ __('Titulo') }}:</label>
                             <input type="text" name="title" value="{{ $place->title }}" class="w-full p-2 border rounded-md" id="title">
+                            @error('title')
+                                <p id="title-error" class="mt-2 text-red-500 text-sm">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="mb-4">
                             <label for="latitude" class="block text-gray-700 font-bold">{{ __('Latitud') }}:</label>
                             <input type="text" name="latitude" value="{{ $place->latitude }}" class="w-full p-2 border rounded-md" id="latitude">
+                            @error('latitude')
+                                <p id="latitude-error" class="mt-2 text-red-500 text-sm">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="mb-4">
                             <label for="longitude" class="block text-gray-700 font-bold">{{ __('Longitud') }}:</label>
                             <input type="text" name="longitude" value="{{ $place->longitude }}" class="w-full p-2 border rounded-md" id="longitude">
+                            @error('longitude')
+                                <p id="longitude-error" class="mt-2 text-red-500 text-sm">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="mb-4">
                             <label for="descripcion">{{ __('Descripcion') }}:</label>
                             <textarea name="descripcion" id="descripcion" class="w-full p-2 border rounded-md" rows="4">{{ $place->descripcion }}</textarea>
+                            @error('descripcion')
+                                <p id="descripcion-error" class="mt-2 text-red-500 text-sm">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="mb-4">
                             <label for="visibility_id" class="block text-gray-700 font-bold">{{ __('Visibilidad') }}:</label>
@@ -53,7 +55,11 @@
                         <div class="mb-4">
                             <label for="upload" class="block text-gray-700 text-sm font-bold mb-2">{{ __('Selecciona un nuevo archivo') }}:</label>
                             <input type="file" name="upload" id="upload" class="border rounded w-full py-2 px-3 text-gray-700">
+                            @error('upload')
+                                <p id="upload-error" class="mt-2 text-red-500 text-sm">{{ $message }}</p>
+                            @enderror
                         </div>
+                        
                         <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">{{ __('Guardar') }}</button>
                     </form>
                     <a href="{{ route('places.index') }}" class="mt-4 inline-block text-gray-500 hover:text-gray-700">{{ __('Volver') }}</a>

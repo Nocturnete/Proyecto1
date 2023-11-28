@@ -39,10 +39,10 @@
                     </div>
                 </header>
                 @endif
-                <div class="w-full">
+                <!-- <div class="w-full">
                     @include('partials.flash')
                     @yield('content')
-                </div>
+                </div> -->
                 {{ $slot }}
             </main>
             <!-- PANTALLA TABLET / MOVIL -->
@@ -54,10 +54,10 @@
                     </div>
                 </header>
                 @endif
-                <div class="w-full">
+                <!-- <div class="w-full">
                     @include('partials.flash')
                     @yield('content')
-                </div>
+                </div> -->
                 {{ $slot }}
             </main>
         </div>
