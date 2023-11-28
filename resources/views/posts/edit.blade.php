@@ -8,16 +8,22 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                <form method="post" action="{{ route('posts.update', $post->id) }}" enctype="multipart/form-data" class="bg-white p-4 rounded-lg shadow-md">
+                <form id="validate-post-form" method="post" action="{{ route('posts.update', $post->id) }}" enctype="multipart/form-data" class="bg-white p-4 rounded-lg shadow-md">
                         @csrf
                         @method('PUT')
                         <div class="mb-4">
                             <label for="title" class="block text-gray-700 font-bold">{{ __('Titulo') }}:</label>
                             <input type="text" id="title" name="title" value="{{ $post->title }}" class="w-full p-2 border rounded-md">
+                            @error('title')
+                                <p id="title-error" class="mt-2 text-red-500 text-sm">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="mb-4">
                             <label for="description" class="block text-gray-700 font-bold">{{ __('Descripcion') }}:</label>
                             <textarea id="description" name="description" class="w-full p-2 border rounded-md" rows="4">{{ $post->description }}</textarea>
+                            @error('description')
+                                <p id="description-error" class="mt-2 text-red-500 text-sm">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="mb-4">
                             <label for="visibility_id" class="block text-gray-700 font-bold">{{ __('Visibilidad') }}:</label>
@@ -34,6 +40,9 @@
                         <div class="mb-4">
                             <label for="upload" class="block text-gray-700 font-bold">{{ __('Selecciona un nuevo archivo') }}:</label>
                             <input type="file" id="upload" name="upload" class="w-full p-2 border rounded-md">
+                            @error('upload')
+                                <p id="upload-error" class="mt-2 text-red-500 text-sm">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="flex space-x-4">
                             <button type="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-600">{{ __('Guardar') }}</button>

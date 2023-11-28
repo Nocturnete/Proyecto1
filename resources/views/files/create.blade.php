@@ -23,6 +23,9 @@
                         <div class="form-group">
                             <label for="upload">{{ __("Imagen") }}:</label>
                             <input type="file" class="form-control" name="upload"/>
+                            @error('upload')
+                                <p id="upload-error" class="mt-2 text-red-500 text-sm">{{ $message }}</p>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary">{{ __("Crear") }}</button>
                         <button type="reset" class="btn btn-secondary">{{ __("Cancelar") }}</button>
