@@ -14,18 +14,18 @@ if (form) {
 
         // Get form inputs values
         let data = {
-            "title": document.getElementById("title")[0].value,
-            "latitude": document.getElementById("latitude")[0].value,
-            "longitude": document.getElementById("longitude")[0].value,
-            "descripcion": document.getElementById("descripcion")[0].value,
-            "visibility_id": document.getElementById("visibility_id")[0].value,
-            "upload": document.getElementById("upload")[0].value,
+            "title": document.getElementById("title").value,
+            "latitude": document.getElementById("latitude").value,
+            "longitude": document.getElementById("longitude").value,
+            "descripcion": document.getElementById("descripcion").value,
+            "visibility_id": document.getElementById("visibility_id").value,
+            "upload": document.getElementById("upload").value,
         };
 
         let rules = {
             "title": "required",
-            "latitude": "required",
-            "longitude": "required",
+            "latitude": "required|numeric",
+            "longitude": "required|numeric",
             "descripcion": "required",
             "visibility_id": "required",
             "upload": "required",

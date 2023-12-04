@@ -66,9 +66,9 @@
 </div>
 
 <!-- MOVIL / TABLET -->
-<div class="w-full lg:hidden">
-    <div class="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-customblue rounded-tl-lg rounded-tr-lg bottom-0 left-1/2">
-        <nav class="navbar flex h-full max-w-lg mx-auto">
+<div class="lg:hidden">
+    <div class="fixed inset-x-0 w-full bottom-0 h-16 max-w-lg -translate-x-1/2 bg-customblue rounded-tl-lg rounded-tr-lg left-1/2">
+        <nav class="navbar flex max-w-lg mx-auto">
             <!-- Index -->
             <a href="{{ route('dashboard') }}" data-menu-id="dashboard" class="link flex-1 justify-center grid place-items-center py-3 rounded-tl-lg hover:bg-blue-800">
                 <i class="fi-sr-home text-xl text-white  mb-1"></i>

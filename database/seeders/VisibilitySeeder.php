@@ -15,9 +15,9 @@ class VisibilitySeeder extends Seeder
     {
         //
         DB::table('visibilities')->insert([
-            ['name' => 'public'],
-            ['name' => 'contacts'],
-            ['name' => 'private'],
+            ['name' => 'Public'],
+            ['name' => 'Contacts'],
+            ['name' => 'Private'],
         ]);
     }
 }
