@@ -45,7 +45,6 @@
         <a href="{{ route('about') }}" class="mt-5">Volver</a>
     </div>
     <script>
-        const modal = document.getElementById('myModal-cristian');
         const btn = document.querySelector('.openModalBtn');
 
         function showHobby(member) {
@@ -88,11 +87,19 @@
             modal.style.display = 'flex';
         }
 
+        function closeVideo(modalId) {
+            const modal = document.getElementById(modalId);
+            const video = modal.querySelector('video');
+            video.pause();
+            modal.style.display = 'none';
+        }
+
         window.onclick = function(event) {
             if (event.target.className === 'modal') {
-                event.target.style.display = 'none';
+                closeVideo(event.target.id);
             }
         };
+
 
     </script>
 
