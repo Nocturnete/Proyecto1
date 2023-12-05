@@ -68,4 +68,16 @@ Route::get('/language/{locale}', [LanguageController::class, 'language'])->name(
 Route::post('/posts/{post}/likes', 'App\Http\Controllers\PostController@like')->name('posts.likes');
 Route::delete('/posts/{post}/likes', 'App\Http\Controllers\PostController@unlike')->name('posts.unlike');
 
+Route::get('/about-us', function () {
+    return view('about.index');
+})->middleware(['auth', 'verified'])->name('about');
+
+Route::get('/about-cristian', function () {
+    return view('about.cristian.index');
+})->middleware(['auth', 'verified'])->name('about-cristian');
+
+Route::get('/about-gerard', function () {
+    return view('about.gerard.index');
+})->middleware(['auth', 'verified'])->name('about-gerard');
+
 require __DIR__.'/auth.php';

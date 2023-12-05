@@ -7,7 +7,6 @@
    </ul>
 </div>
 @endif
-
 <x-app-layout>
     <div class="bg-white p-8 rounded lg:shadow-md dark:bg-customgray">
         <!-- TITULO -->
