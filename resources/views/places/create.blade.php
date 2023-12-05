@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <h2 class="text-black font-semibold text-5xl md:text-4xl lg:text-4xl lg:mt-3 dark:text-white">
-            {{ __('Crear Publicación') }}
+            {{ __('Crear lugar') }}
         </h2>
     </x-slot>
 

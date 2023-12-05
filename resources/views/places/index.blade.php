@@ -1,11 +1,14 @@
 <x-app-layout>
+
     <x-slot name="header">
-        <h2 class="font-semibold text-black text-5xl md:text-4xl lg:text-4xl lg:mt-3 dark:text-white">
+        <h2 class="text-black font-semibold text-5xl md:text-4xl lg:text-4xl lg:mt-3 dark:text-white">
             {{ __('Lugares') }}
         </h2>
     </x-slot>
-    <div class="py-5">
-        <div class="w-full mx-auto">
+
+    <div class="py-5 ">
+        <div class="w-full mx-auto ">
+
             <!-- BUSCADOR -->
             <div class="lg:flex lg:justify-center">
                 <form class="flex items-center mb-8" action="{{ route('places.search') }}" method="GET">
@@ -17,42 +20,45 @@
                     </div>
                 </form>
             </div>
+
             <!-- CREAR LUGAR -->
             <div class="lg:m-6 flex items-center justify-center">
                 <a href="{{ route('places.create') }}">
                     <i class="fi-sr-add text-customblue text-4xl"></i>
                 </a>
             </div>
-            <!-- TARGETA -->
-            @foreach ($places as $place)
-                @if ($place->visibility_id != 3 || (auth()->check() && auth()->user()->id === $place->author_id))
-                    <a href="{{ route('places.show', $place->id) }}">
-                        <div class="rounded-md shadow-md max-w-[900px] flex flex-col md:flex-row mb-8 mt-3 bg-gray-200 dark:bg-gray-500">
-                            <!-- IMAGEN -->
-                            <div class="w-1/2">
-                                <img src="{{ asset('storage/' . $place->file->filepath) }}" class="object-cover object-center w-full h-full max-w-[500px] max-h-[500px]">
-                            </div>
-                            <!-- CONTENIDO -->
-                            <div class="w-1/2 w-full">
-                                <div class="h-full">
-                                    <div class="flex justify-between mt-3">
+
+            <!-- TARGETAS -->
+            <div class="px-5 mb-10">
+                @foreach ($places as $place)
+                    <!-- TARGETA -->
+                    @if ($place->visibility_id != 3 || (auth()->check() && auth()->user()->id === $place->author_id))
+                        <a href="{{ route('places.show', $place->id) }}">
+                            <div class="flex flex-col mt-3 mb-6 bg-gray-200 dark:bg-gray-500">
+                                <!-- IMAGEN -->
+                                <div class="order-1 flex items-center justify-center bg-black">
+                                    <img src="{{ asset('storage/' . $place->file->filepath) }}" class="object-cover h-60">
+                                </div>
+                                <!-- INFORMACION -->
+                                <div class="order-2 ">
+                                    <div class="flex justify-between">
                                         <!-- TITULO -->
-                                        <h3 class="text-2xl pl-3 pt-3 md:text-3xl lg:text-3xl dark:text-white">
+                                        <h3 class="pl-3 pt-1 text-2xl w-full mr-2 font-semibold dark:text-white">
                                             {!! $place->title !!}
                                         </h3>
                                         <!-- FAVORITOS -->
                                         <div class="flex items-center pr-4">
                                             @can('create', App\Models\Place::class)
                                                 @if(auth()->check() && auth()->user()->favorites->contains($place->id))
-                                                <form action="{{ route('places.unfavorites', ['place' => $place->id]) }}" method="POST" class="flex items-center">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="ml-8 pt-2"><i class="fi-sr-star ml-3 text-yellow-500 text-2xl"></i></button>
-                                                </form>
-                                                @else
-                                                    <form action="{{ route('places.favorites', ['place' => $place->id]) }}" method="POST" class="flex items-center">
+                                                    <form action="{{ route('places.unfavorites', ['place' => $place->id]) }}" method="POST">
                                                         @csrf
-                                                        <button class="ml-8 pt-2"><i class="fi-sr-star ml-3 text-2xl dark:text-white"></i></button>
+                                                        @method('DELETE')
+                                                        <button class="pt-2"><i class="fi-sr-star ml-4 text-yellow-500 text-2xl"></i></button>
+                                                    </form>
+                                                @else
+                                                    <form action="{{ route('places.favorites', ['place' => $place->id]) }}" method="POST">
+                                                        @csrf
+                                                        <button class="pt-2"><i class="fi-sr-star ml-4 text-2xl dark:text-white"></i></button>
                                                     </form>
                                                 @endif
                                             @endcan
@@ -62,16 +68,17 @@
                                         </div>
                                     </div>
                                     <!-- VISIBILIDAD -->
-                                    <p class="ml-3 text-lg dark:text-white">{{ $place->visibility->name }}</p> 
+                                    <p class="pl-3 pb-2 text-md dark:text-white ">{{ $place->visibility->name }}</p> 
                                     <!-- DESCRIPCION -->
-                                    <p class="ml-3 mt-4 pr-3 mb-4 text-xl dark:text-white">{!! $place->descripcion !!}</p>
+                                    <p class="ml-3 mr-6 mb-2 text-md dark:text-white ">{!! $place->descripcion !!}</p>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                @endif
-            @endforeach
-            {{ $places->links() }}
+                        </a>
+                    @endif
+                @endforeach
+                {{ $places->links() }}
+            </div>
+
         </div>
     </div>
 </x-app-layout>
