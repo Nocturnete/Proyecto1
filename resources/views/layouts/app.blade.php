@@ -25,8 +25,8 @@
     <!-- Titulo -->
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
-
-<body class="bg-white h-full dark:bg-customblack">
+<!-- h-full -->
+<body class="bg-white dark:bg-customblack">
     <div class="min-h-screen">
         @include('layouts.navigation')
         <div class="flex-1 p-4">

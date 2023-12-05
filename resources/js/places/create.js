@@ -1,5 +1,6 @@
 import Validator from '../validator';
 
+
 const form = document.getElementById("create-place-form");
 
 if (form) {
@@ -36,22 +37,17 @@ if (form) {
 
         // Validate fields
         if (validation.passes()) {
-            // Allow form submission (do nothing)
             console.log("Validation OK");
-        } else {
-            // Get error messages
-            let errors = validation.errors.all();
 
-            // Show error messages
+        } else {
+            let errors = validation.errors.all();
+            
             for (let inputName in errors) {
                 let error = errors[inputName];
                 console.log("[ERROR] " + error);
-
-                // Display error messages dynamically
                 document.getElementById(inputName + "-error").innerText = error;
             }
 
-            // Avoid form submission
             event.preventDefault();
             return false;
         }

@@ -195,7 +195,9 @@
     "Correo electrónico": "E-mail",
     "Contraseña": "Password",
     "Confirma contraseña": "Confirm Password",
-    "Subir Publicación": "Upload Publication",
+    "Crear Publicacion": "Create Post",
+    "Crear lugar": "Create Place",
     "Vista Previa de la Imagen": "Image Preview",
-    "Volver a publicaciones": "Back to Publications"
+    "Volver a publicaciones": "Back to Publications",
+    "Volver a lugares": "Back to Places"
 }
