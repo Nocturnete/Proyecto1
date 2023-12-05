@@ -109,7 +109,9 @@
             margin-top: 50px;
             width: 100%;
             display: flex;
+            flex-wrap:wrap;
             justify-content: center;
+            margin-bottom: 40px;
         }
 
         .team-member-gerard, .team-member-cristian {
