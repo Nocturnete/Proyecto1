@@ -19,4 +19,3 @@ yarn-error.log
 composer
 composer.phar
 composer.lock
-!/public/storage/uploads

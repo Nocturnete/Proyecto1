@@ -26,11 +26,12 @@ Before you begin, ensure that you have [Composer](https://getcomposer.org/) inst
     cp .env.example .env
     ```
 
-5. **Start the Development Server**
+5. **Push images on folder /public/storage/uploads**
+
+    https://drive.google.com/drive/folders/1Xv7Zzq3FiKNVEB8V0u3rhoICCIV-kuwg?usp=sharing
+
+
+6. **Start the Development Server**
     ```bash
     php artisan serv
-    ```
-    
-    ```bash
-    npm run dev
     ```
