@@ -41,9 +41,6 @@
         <a href="{{ route('about-cristian') }}">👁️</a>
 
     </div>
-    <div>
-        <a href="{{ route('about') }}" class="mt-5">Volver</a>
-    </div>
     <script>
         const btn = document.querySelector('.openModalBtn');
 

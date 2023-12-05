@@ -44,7 +44,8 @@
             "@php artisan migrate",
             "@php artisan key:generate",
             "@php artisan storage:link",
-            "@php artisan db:seed"
+            "@php artisan db:seed",
+            "@npm run build"
         ],
         "post-install-cmd": [
             "@php artisan key:generate",

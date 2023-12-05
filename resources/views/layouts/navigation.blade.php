@@ -58,7 +58,7 @@
 
                 <!-- SOBRE NOSOTROS -->
                 <a href="{{ route('about') }}" data-menu-id="about" class="link pt-2 pb-2 mr-14 p-2 mt-2 rounded-lg hover:bg-blue-800">
-                    <i class="fi-sr-home text-xl pr-2"></i>
+                    <i class="fi-sr-users-alt text-xl pr-2"></i>
                     <span class="text-xl text-white">{{ __('About') }}</span>
                 </a>
  
@@ -121,7 +121,7 @@
 
             <!-- SOBRE NOSOTROS -->
             <a href="{{ route('about') }}" data-menu-id="about" class="link flex-1 justify-center grid place-items-center py-3 rounded-tl-lg hover:bg-blue-800">
-                <i class="fi-sr-home text-xl text-white  mb-1"></i>
+                <i class="fi-sr-users-alt text-xl text-white  mb-1"></i>
                 <span class="text-xs text-white">{{ __('About') }}</span>
             </a>
         </nav>
