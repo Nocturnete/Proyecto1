@@ -3,6 +3,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -14,8 +15,9 @@ class UserSeeder extends Seeder
             'name'      => config('admin.name'),
             'email'     => config('admin.email'),
             'password'  => Hash::make(config('admin.password')),
+            'role_id'   => 1,
         ]);
-        $admin->save();
+        $admin->save(); 
     }
 }
 

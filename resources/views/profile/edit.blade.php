@@ -6,28 +6,32 @@
     </x-slot>
 
     <div class="py-5">
-        <div class="w-full mx-auto h-full ">
+        <div class="w-full mx-auto h-full">
+            <!-- IDIOMA -->
+            <div class=" mt-6 mb-7 bg-gray-200 shadow sm:rounded-lg sm:pt-8 sm:pb-2 sm:pl-8 lg:ml-16 lg:mr-16 dark:bg-gray-800">
+                <p class="text-xl mb-5 dark:text-white">{{ __('Idioma') }}</p>
+                <x-language-switcher/>
+            </div>
             <!-- INFORMACION -->
-            <div class="p-4 mt-6 mb-7 bg-gray-200 shadow sm:rounded-lg sm:p-8 lg:ml-16 lg:mr-16 dark:bg-gray-800">
+            <div class="mt-6 mb-7 bg-gray-200 shadow sm:rounded-lg sm:p-8 lg:ml-16 lg:mr-16 dark:bg-gray-800">
                 <div class="max-w-xl">
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
 
             <!-- ACTUALIZAR -->
-            <div class="p-4 mt-6 mb-7 bg-gray-200 shadow sm:rounded-lg sm:p-8 lg:ml-16 lg:mr-16 dark:bg-gray-800">
+            <div class="mt-6 mb-7 bg-gray-200 shadow-md
+            sm:p-8 lg:ml-16 lg:mr-16 dark:bg-gray-800">
                 <div class="max-w-xl">
                     @include('profile.partials.update-password-form')
                 </div>
             </div>
-
             <!-- BORRAR -->
-            <div class="p-4 mt-6 mb-7 bg-gray-200 shadow sm:rounded-lg sm:p-8 lg:ml-16 lg:mr-16 dark:bg-gray-800">
+            <div class="mt-6 mb-7 bg-gray-200 shadow sm:rounded-lg sm:p-8 lg:ml-16 lg:mr-16 dark:bg-gray-800">
                 <div class="max-w-xl">
                     @include('profile.partials.delete-user-form')
                 </div>
             </div>
-
             <!-- CERRAR SESION -->
             <div class="p-4 mt-6 mb-7 sm:p-8 lg:ml-16 lg:mr-16 ">
                 <form method="POST" action="{{ route('logout') }}">
