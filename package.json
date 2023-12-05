@@ -19,6 +19,7 @@
     "dependencies": {
         "@flaticon/flaticon-uicons": "^3.0.0",
         "flag-icons": "^7.0.2",
+        "tw-elements": "^1.1.0",
         "validatorjs": "^3.22.1"
     }
 }
