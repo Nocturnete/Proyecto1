@@ -11,7 +11,8 @@ class PostTest extends TestCase
 {
     public function test_post_list()
     {
-        $response = $this->getJson("/api/posts");
+        $token = "85|kfv77x5c3MyGlmK3BVn6iStTdzHDI48EPuV1XFqO419cd3a5";
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->getJson("/api/posts");
         $this->_test_ok($response);
     }
 
@@ -73,14 +74,16 @@ class PostTest extends TestCase
      */
     public function test_post_read(int $id)
     {
-        $response = $this->getJson("/api/posts/{$id}");
+        $token = "85|kfv77x5c3MyGlmK3BVn6iStTdzHDI48EPuV1XFqO419cd3a5";
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->getJson("/api/posts/{$id}");
         $this->_test_ok($response);
     }
    
     public function test_post_read_notfound()
     {
+        $token = "85|kfv77x5c3MyGlmK3BVn6iStTdzHDI48EPuV1XFqO419cd3a5";
         $id = "not_exists";
-        $response = $this->getJson("/api/posts/{$id}");
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->getJson("/api/posts/{$id}");
         $this->_test_notfound($response);
     }
 
@@ -155,6 +158,32 @@ class PostTest extends TestCase
         $token = "85|kfv77x5c3MyGlmK3BVn6iStTdzHDI48EPuV1XFqO419cd3a5";
         $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->postJson("/api/posts/{$id}/likes");
         $this->_test_ok($response);
+    }
+
+    public function test_post_like_not_found()
+    {
+        $token = "85|kfv77x5c3MyGlmK3BVn6iStTdzHDI48EPuV1XFqO419cd3a5";
+        $id = "not_exists";
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->postJson("/api/posts/{$id}/likes");
+        $this->_test_notfound($response);
+    }
+
+    /**
+     * @depends test_post_create
+     */
+    public function test_post_unlike(int $id)
+    {
+        $token = "85|kfv77x5c3MyGlmK3BVn6iStTdzHDI48EPuV1XFqO419cd3a5";
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->deleteJson("/api/posts/{$id}/likes");
+        $this->_test_ok($response);
+    }
+
+    public function test_post_unlike_not_found()
+    {
+        $token = "85|kfv77x5c3MyGlmK3BVn6iStTdzHDI48EPuV1XFqO419cd3a5";
+        $id = "not_exists";
+        $response = $this->withHeaders(['Authorization' => 'Bearer ' . $token])->deleteJson("/api/posts/{$id}/likes");
+        $this->_test_notfound($response);
     }
 
     /**

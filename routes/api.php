@@ -27,13 +27,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [TokenController::class, 'logout']);
 });
 
-Route::get('posts', [PostController::class, 'index']);
-Route::get('posts/{id}', [PostController::class, 'show']);
-Route::post('/posts/{post}/likes', [PostController::class, 'like']);
-Route::delete('/posts/{post}/likes', [PostController::class, 'unlike']);
-
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('posts', [PostController::class, 'store']);
+    Route::apiResource('posts', PostController::class);
     Route::post('posts/{id}', [PostController::class, 'update_workaround']);
-    Route::delete('posts/{id}', [PostController::class, 'destroy']);
+    Route::post('/posts/{id}/likes', [PostController::class, 'like']);
+    Route::delete('/posts/{id}/likes', [PostController::class, 'unlike']);
 });
