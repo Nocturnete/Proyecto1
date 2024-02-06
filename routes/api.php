@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\FileController;
 use App\Http\Controllers\Api\TokenController;
+use App\Http\Controllers\Api\PlaceController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,4 +25,11 @@ Route::post('/register', [TokenController::class, 'register']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [TokenController::class, 'user']);
     Route::post('/logout', [TokenController::class, 'logout']);
+});
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('places', PlaceController::class);
+    Route::post('places/{id}/favorite', [PlaceController::class, 'favorite']);
+    Route::delete('places/{id}/unfavorite', [PlaceController::class, 'unfavorite']);
 });

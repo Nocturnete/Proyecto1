@@ -90,4 +90,9 @@ class PlacePolicy
         return $user->role_id === 3;
     }
 
+
+    public function favorite(User $user): bool
+    {
+        return $user->role_id === 1;
+    }
 }
