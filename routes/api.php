@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\FileController;
 use App\Http\Controllers\Api\TokenController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('posts/{id}', [PostController::class, 'update_workaround']);
     Route::post('/posts/{id}/likes', [PostController::class, 'like']);
     Route::delete('/posts/{id}/likes', [PostController::class, 'unlike']);
+    Route::get('posts/{id}/comments', [CommentController::class, 'index']);
+    Route::post('posts/{id}/comments', [CommentController::class, 'store']);
+    Route::delete('posts/{id}/comments/{commentId}', [CommentController::class, 'destroy']);
 });

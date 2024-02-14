@@ -9,6 +9,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,5 +80,9 @@ Route::get('/about-cristian', function () {
 Route::get('/about-gerard', function () {
     return view('about.gerard.index');
 })->middleware(['auth', 'verified'])->name('about-gerard');
+
+Route::get('posts/{id}/comments', [CommentController::class, 'index']);
+Route::delete('posts/{id}/comments', [CommentController::class, 'destroy'])->name('comment.delete');
+Route::post('posts/{id}/comments', [CommentController::class, 'store'])->name('comment.store');
 
 require __DIR__.'/auth.php';

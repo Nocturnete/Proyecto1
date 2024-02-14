@@ -15,7 +15,7 @@
         </h1>
         <!-- VOLVER -->
         <div class="w-full mt-6 mb-5">
-            <a href="{{ route('posts.index') }}"><i class="fi-sr-angle-left text-md font-semibold text-customblue">{{ __('Volver a lugares') }}</i></a>
+            <a href="{{ route('posts.index') }}"><i class="fi-sr-angle-left text-md font-semibold text-customblue">{{ __('Volver a posts') }}</i></a>
         </div>
         <div class="ml-2 mr-2">
             <div class="flex flex-col ">
@@ -50,5 +50,6 @@
                 <a href="{{ route('posts.edit', $post->id) }}" class="bg-blue-500 text-md text-white font-bold pt-2 pb-2 pl-6 pr-6 ml-6 rounded-md hover:bg-blue-600">{{ __('Editar') }}</a>
             @endcan
         </div>
+        @include('comments.index')
     </div>
 </x-app-layout>
