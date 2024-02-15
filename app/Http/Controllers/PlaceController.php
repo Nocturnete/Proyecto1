@@ -110,15 +110,13 @@ class PlaceController extends Controller
                 'visibility_id' => $request->visibility_id,
             ]);
 
-            return redirect()->route('places.show', $place)
-                ->with('success', 'File successfully saved');
+            return redirect()->route('places.show', $place)->with('success', 'El lugar se ha creado correctamente.');
 
         } else {
 
             \Log::debug("Disk storage FAILS");
 
-            return redirect()->route("places.create")
-                ->with('error', 'ERROR uploading file');
+            return redirect()->route("places.create")->with('error', 'ERROR uploading file');
         }
     }
 
