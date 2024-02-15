@@ -129,6 +129,7 @@ class PlaceController extends Controller
      */
     public function show(Place $place)
     {
+        $places = Place::with('reviews')->find($place);
         return view("places.show", compact('place'));
 
     }
@@ -141,7 +142,6 @@ class PlaceController extends Controller
     public function edit(Place $place)
     {
         $visibilities = Visibility::all();
-
         return view("places.edit", compact('visibilities', 'place'));
     }
 

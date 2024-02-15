@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\FileController;
 use App\Http\Controllers\Api\TokenController;
 use App\Http\Controllers\Api\PlaceController;
+use App\Http\Controllers\Api\ReviewController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('places', PlaceController::class);
     Route::post('places/{id}/favorite', [PlaceController::class, 'favorite']);
     Route::delete('places/{id}/unfavorite', [PlaceController::class, 'unfavorite']);
+    Route::get('/places/{id}/reviews', [ReviewController::class, 'index']);
+    Route::post('/places/{id}/reviews', [ReviewController::class, 'store']);
+    Route::delete('/places/{id}/reviews/{review}', [ReviewController::class, 'destroy']);
 });

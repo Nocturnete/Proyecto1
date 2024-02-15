@@ -9,6 +9,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,18 @@ Route::get('posts.search', 'App\Http\Controllers\PostController@search')->name('
 Route::post('/places/{place}/favorites', 'App\Http\Controllers\PlaceController@favorite')
     ->name('places.favorites')
     ->middleware('can:create,place');
+
+Route::get('/places/{place}/reviews', 'App\Http\Controllers\ReviewController@index')
+    ->name('places.reviews.index');
+Route::post('/places/{place}/reviews', 'App\Http\Controllers\ReviewController@store')
+    ->name('places.reviews.store');
+Route::delete('/places/{place}/reviews/{reviewId}', 'App\Http\Controllers\ReviewController@destroy')
+    ->name('places.reviews.destroy');
+    
+
+
+
+
 
 Route::delete('/places/{place}/favorites', 'App\Http\Controllers\PlaceController@unfavorite')->name('places.unfavorites');
 
