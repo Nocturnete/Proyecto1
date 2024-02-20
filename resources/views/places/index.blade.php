@@ -27,6 +27,11 @@
             </div>
             <!-- TARGETAS -->
             <div class="px-5 mb-10">
+
+                @if(session('success'))
+                    @include('alerts', ['type' => 'success', 'message' => session('success')])
+                @endif
+                
                 @foreach ($places as $place)
                     <!-- TARGETA -->
                     @if ($place->visibility_id != 3 || (auth()->check() && auth()->user()->id === $place->author_id))

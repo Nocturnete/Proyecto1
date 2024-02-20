@@ -8,6 +8,7 @@
         <div class="w-full mt-6 mb-5">
             <a href="{{ route('places.index') }}"><i class="fi-sr-angle-left text-md font-semibold text-customblue">{{ __('Volver a lugares') }}</i></a>
         </div>
+        
         @if(session('success'))
             @include('alerts', ['type' => 'success', 'message' => session('success')])
         @endif
