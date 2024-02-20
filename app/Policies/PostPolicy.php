@@ -66,6 +66,11 @@ class PostPolicy
 
         // return $user->role_id === 1 && $user->id === $post->author_id;
     }
+    
+    public function like(User $user): bool
+    {
+        return $user->role_id == 1;
+    }
 
     /**
      * Determine whether the user can restore the model.

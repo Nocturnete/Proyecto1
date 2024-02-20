@@ -82,7 +82,6 @@ class FileController extends Controller
     {
         //
         $file = File::find($id);
-
         if ($file) {
             return response()->json([
                 'success' => true,
