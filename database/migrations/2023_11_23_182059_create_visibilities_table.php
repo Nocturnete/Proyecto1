@@ -15,11 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
         });
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('visibility_id')->nullable();
-            $table->foreign('visibility_id')->references('id')->on('visibilities');
-        });
     }
 
     /**

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('author_id');
             $table->unsignedBigInteger('visibility_id');
             $table->timestamps();
-            $table->foreign('visibility_id')->references('id')->on('visibilities');
+            // $table->foreign('visibility_id')->references('id')->on('visibilities');
         });
     }
 
