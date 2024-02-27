@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use RalphJSmit\Laravel\SEO\Support\HasSEO;
 
 class Place extends Model
 {
+    use HasSEO;
     use HasFactory;
     
     /**
@@ -57,5 +59,14 @@ class Place extends Model
     public function visibility()
     {
         return $this->belongsTo(Visibility::class);
+    }
+
+    protected function getDynamicSEOData(): SEOData
+    {
+        return new SEOData(
+            title: $this->title,
+            description: $this->excerpt,
+            author: $this->author->fullName,
+        );
     }
 }

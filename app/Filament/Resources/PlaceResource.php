@@ -38,6 +38,20 @@ class PlaceResource extends Resource
                             return time() . '_' . $file->getClientOriginalName();
                         }),
                 ]),
+            Forms\Components\Fieldset::make('Meta Tags SEO')
+                ->columns(2)
+                ->schema([
+                    Forms\Components\TextInput::make('seo_title')
+                        ->label('Títol SEO')
+                        ->placeholder('Introdueix el títol SEO')
+                        ->stacked()
+                        ->required(),
+                    Forms\Components\Textarea::make('seo_description')
+                        ->label('Descripció SEO')
+                        ->placeholder('Introdueix la descripció SEO')
+                        ->stacked()
+                        ->required(),
+                ]),
             Forms\Components\Fieldset::make('Place')
                 ->schema([
                     Forms\Components\Select::make('author_id')

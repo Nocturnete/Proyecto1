@@ -24,6 +24,9 @@
 
     <!-- Titulo -->
     <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- SEO -->
+    {!! seo() !!}
 </head>
 <!-- h-full -->
 <body class="bg-white dark:bg-customblack">
